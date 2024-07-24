@@ -48,7 +48,6 @@ ____________
 
 - **Microcontroller:**
    - ESP32-C3
-   - Wi-Fi or ESP-NOW
 - **Sensors:**
    - Soil Temperature: TMP102
    - Air Temperature and Humidity: AHT20

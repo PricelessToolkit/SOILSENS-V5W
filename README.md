@@ -32,6 +32,16 @@ ____________
 - SOILSENS-V5W supports two modes: ESP-NOW and WiFi for MQTT-based connectivity.
 - Upon powering on, the SOILSENS-V5W operates in ESP-NOW mode by default. This mode does not require any initial configuration and communicates directly with the [Capibridge gateway](https://github.com/PricelessToolkit/CapiBridge). The default Gateway Key is "xy"
 
+
+| **Feature**                   | **ESP-NOW**                                                                 | **WiFi**                                      |
+|-------------------------------|-----------------------------------------------------------------------------|-----------------------------------------------|
+| **Energy Efficiency**         | Highly energy-efficient                                                     | 5x Higher power consumption                   |
+| **Range**                     | Long-Range                                                                  | Short range                                   |
+| **Configuration**             | Does not require configuration                                              | Requires network and MQTT configuration       |
+| **Broadcasting**              | Sensor data can be read from a third device without connecting to a network | Requires connection to a network              |
+| **Gateway Requirement**       | Requires a gateway [Capibridge](https://github.com/PricelessToolkit/CapiBridge)                                             | Does not require a gateway                    |
+
+
 ## 1. Configuration
 
 To access the configuration settings, follow these steps:

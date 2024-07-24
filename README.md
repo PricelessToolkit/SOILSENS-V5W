@@ -14,9 +14,9 @@ Upon powering on, the SOILSENS-V5W operates in ESP-NOW mode by default. This mod
 To access the configuration settings, follow these steps:
 
 1. **Initiate Configuration Mode:**
-   - **Press and hold the calibration button.**
-   - **While holding the calibration button, briefly press the trigger button.** 
-   - **Continue holding the calibration button for more than 3 seconds and release it.**
+   - Press and hold the calibration button.
+   - While holding the calibration button, briefly press the trigger button.
+   - Continue holding the calibration button for more than 3 seconds and release it.
    - The blue LED will blink **five times**, indicating the device has entered configuration mode.
 
 2. **Access Configuration via WiFi:**
@@ -42,10 +42,10 @@ After entering the necessary information, click **Submit** to save the configura
 ## 3. Calibrating the Soil Moisture Sensor
 
 Accurate soil moisture readings require proper calibration. Follow these steps:
-   - **Put the sensor in dry soil.**
-   - **Press and hold the calibration button.**
-   - **While holding the calibration button, briefly press the trigger button.** 
-   - **Continue holding the calibration button for less than 2 seconds and release it.**
+   - Put the sensor in dry soil.
+   - Press and hold the calibration button.
+   - While holding the calibration button, briefly press the trigger button.
+   - Continue holding the calibration button for less than 2 seconds and release it.
    - The blue LED will blink twice, indicating the start of `dry soil` calibration.
    - The device will complete the calibration, indicated by three blinks.
    - Place the sensor in fully wet soil, you have 5 seconds to do so.

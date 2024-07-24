@@ -96,8 +96,8 @@ This project is open-source, allowing you to assemble SOILSENS-V5W on your own. 
    | 3V3        | 3V3         |
    | GND        | GND         |
 
-5. - Press and hold the **PROG** button on the sensor.
-6. - While holding the **PROG** button, connect the USB to TTL adapter to the USB port of your computer.
+5. - Press and hold the **PRG** button on the sensor.
+6. - While holding the **PRG** button, connect the USB to TTL adapter to the USB port of your computer.
 7. - Click on the **Upload** button to upload the code to the sensor.
 
 ## Troubleshooting

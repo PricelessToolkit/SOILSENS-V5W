@@ -55,11 +55,7 @@ Accurate soil moisture readings require proper calibration. Follow these steps:
 
 ## Troubleshooting
 
-- If the sensor fails to enter configuration mode, ensure you are following the correct sequence: hold the calibration button, briefly press the trigger button, and continue holding the calibration button for more than 3 seconds.
-- For connectivity issues in WiFi mode, verify the WiFi SSID, password, and MQTT server details.
-
-## Additional Information
-
-For more details, consult the full documentation or contact technical support.
-
-Enjoy your SOILSENS-V5W sensor and the precise environmental data it provides!
+ - Ensure you are following the correct sequence: hold the calibration button, briefly press the trigger button, and continue holding the calibration button.
+ -  More than 3 seconds configuration mode.
+ -  Less than 3 seconds Calibration mode.
+- For connectivity issues in WiFi mode, verify the WiFi SSID, password, MAC, Channel, and MQTT server details.

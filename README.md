@@ -56,6 +56,6 @@ Accurate soil moisture readings require proper calibration. Follow these steps:
 ## Troubleshooting
 
  - Ensure you are following the correct sequence: hold the calibration button, briefly press the trigger button, and continue holding the calibration button.
- -  More than 3 seconds configuration mode.
- -  Less than 3 seconds Calibration mode.
+    -  More than 3 seconds configuration mode.
+    -  Less than 3 seconds Calibration mode.
 - For connectivity issues in WiFi mode, verify the WiFi SSID, password, MAC, Channel, and MQTT server details.

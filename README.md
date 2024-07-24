@@ -11,13 +11,9 @@ The SOILSENS-V5W is a reliable wireless capacitive soil moisture sensor that uti
 
 ## 🛒 Can be purchased from http://www.PricelessToolkit.com
 
-# Quick Start Guide for "SOILSENS-V5W"
-
-Welcome to the setup guide for the SOILSENS-V5W sensor! This device measures soil moisture, soil temperature, air temperature, air humidity, and light intensity. It supports two modes: ESP-NOW for communication with a Capibridge gateway and WiFi for MQTT-based connectivity.
-
-## 1. Initial Power On and Default Operation
-
-Upon powering on, the SOILSENS-V5W operates in ESP-NOW mode by default. This mode does not require any initial configuration and communicates directly with the Capibridge gateway. Default Key is "xy"
+## Initial Power On and Default Operation
+- SOILSENS-V5W supports two modes: ESP-NOW and WiFi for MQTT-based connectivity.
+- Upon powering on, the SOILSENS-V5W operates in ESP-NOW mode by default. This mode does not require any initial configuration and communicates directly with the Capibridge gateway. Default Key is "xy"
 
 ## 2. Configuration
 

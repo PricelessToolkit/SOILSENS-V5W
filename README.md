@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/PricelessToolkit/SOILSENS-V5W/main/img/banner.jpg"/>
+<img src="img/sens-kc-full.jpg"/>
 
 🤗 Please consider subscribing to my [YouTube channel](https://www.youtube.com/@PricelessToolkit/videos) Your subscription goes a long way in backing my work. if you feel more generous, you can buy me a coffee
 
@@ -21,7 +21,6 @@ The SOILSENS-V5W is a reliable wireless capacitive soil moisture sensor that uti
 ## 1. Configuration
 
 To access the configuration settings, follow these steps:
-
 1. **Initiate Configuration Mode:**
    - Press and hold the calibration button.
    - While holding the calibration button, briefly press the trigger button.
@@ -63,6 +62,7 @@ Accurate soil moisture readings require proper calibration. Follow these steps:
 
 
 # DIY
+<img src="img/sens-kc-full.png"/>
 This project is open-source, allowing you to assemble SOILSENS-V5W on your own. To simplify this process, I've provided an "Interactive HTML Boom File" located in the PCB folder. This interactive file helps you identify where to solder each component and polarity, reducing the chances of errors to a minimum. But if you don't feel confident in assembling it yourself, you can always opt to purchase a pre-assembled board from my [Shop](https://www.pricelesstoolkit.com)
 
 ## Troubleshooting

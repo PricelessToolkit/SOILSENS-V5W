@@ -19,11 +19,12 @@ The SOILSENS-V5W is a reliable wireless capacitive soil moisture sensor that uti
 > [!NOTE]
 >  If you're ready to contribute to the project, your support would be greatly appreciated. Due to time constraints, I may not be able to quickly verify new "features" or completely new "code" functionality, so please create a new code/script in the new folder.
 
-- 24.07.2024 - Work in progress "Implementing CRC for ESP-NOW".
-- 22.07.2024 - Configuration taught WIFI Hotspot.
-- 21.07.2024 - Combining WIFI and ESP-NOW Firmware.
-- 20.07.2024 - MQTT Autodiscovery "WIFI Mode".
-- 15.06.2024 - Publishing battery in percent.
+- **24.07.2024** - Work in progress: "Implementing CRC for ESP-NOW."
+- **22.07.2024** - Configured WiFi Hotspot.
+- **21.07.2024** - Combined WiFi and ESP-NOW firmware.
+- **20.07.2024** - Implemented MQTT Autodiscovery in "WiFi Mode."
+- **15.06.2024** - Published battery percentage.
+
 
 ____________
 

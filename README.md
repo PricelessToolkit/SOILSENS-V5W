@@ -87,7 +87,7 @@ This project is open-source, allowing you to assemble SOILSENS-V5W on your own. 
 
 ## Programming using Arduino IDE
 
-1. - Open the Arduino IDE.
+1. - Open the provided code in the Arduino IDE.
 2. - Install all neccecery libraries.
 ```c
       

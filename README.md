@@ -101,7 +101,7 @@ After entering the necessary information, click **Submit** to save the configura
 
 
 > [!IMPORTANT]
-> Entering the configuration mode will wipe all settings. So if you put the sensor in the configuration mode and do not save anything, all settings will be reset to factory settings, e.g., 'ESP-NOW' with key 'xy'.
+> Switching to configuration mode will erase all current settings. Therefore, if you enter configuration mode without saving any changes, all settings will revert to their factory defaults, such as ESP-NOW with Key xy.
 
 
 ## 2. Calibrating the Soil Moisture Sensor

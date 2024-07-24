@@ -65,6 +65,41 @@ Accurate soil moisture readings require proper calibration. Follow these steps:
 <img src="img/sens-kc-pcb.png"/>
 This project is open-source, allowing you to assemble SOILSENS-V5W on your own. To simplify this process, I've provided an "Interactive HTML Boom File" located in the PCB folder. This interactive file helps you identify where to solder each component and polarity, reducing the chances of errors to a minimum. But if you don't feel confident in assembling it yourself, you can always opt to purchase a pre-assembled board from my [Shop](https://www.pricelesstoolkit.com)
 
+
+
+## Programming using Arduino IDE
+
+1. - Open the Arduino IDE.
+2. - Install all neccecery libraries.
+```c
+
+#include <esp_now.h>
+#include <WiFi.h>
+#include "driver/adc.h"
+#include "esp_adc_cal.h"
+#include "Wire.h"
+#include <SparkFunTMP102.h>
+#include <ArduinoJson.h>
+#include <AHT20.h>
+#include <Preferences.h>
+#include <WebServer.h>
+#include <PubSubClient.h>
+     
+```
+  3. - Select the appropriate board and port parameters (refer to the provided screenshot for settings).
+  4. - Connect USBTTL adapter to SOILSENS-V5W
+
+   | Sensor Pin | Adapter Pin |
+   |------------|-------------|
+   | TX         | RX          |
+   | RX         | TX          |
+   | 3V3        | 3V3         |
+   | GND        | GND         |
+
+5. - Press and hold the **PROG** button on the sensor.
+6. - While holding the **PROG** button, connect the USB to TTL adapter to the USB port of your computer.
+7. - Click on the **Upload** button to upload the code to the sensor.
+
 ## Troubleshooting
 
  - Holding the calibration button.

@@ -12,7 +12,16 @@ The SOILSENS-V5W is a reliable wireless capacitive soil moisture sensor that uti
 <img src="img/ha_entity.png"/>
 
 
-## 🛒 Can be purchased from http://www.PricelessToolkit.com
+## 🛒 Where to buy http://www.PricelessToolkit.com
+
+## 📣 Updates, Bugfixes, and Breaking Changes
+- 24.07.2024 - Work in progress "Implementing CRC for ESP-NOW"
+- 20.07.2024 - MQTT Autodiscovery "WIFI Mode"
+- 15.06.2024 - Publishing battery in percent.
+
+> [!NOTE]
+>  If you're ready to contribute to the project, your support would be greatly appreciated. Due to time constraints, I may not be able to quickly verify new "features" or completely new "code" functionality, so please create a new code/script in the new folder.
+____________
 
 # Initial Power On and Default Operation
 - SOILSENS-V5W supports two modes: ESP-NOW and WiFi for MQTT-based connectivity.

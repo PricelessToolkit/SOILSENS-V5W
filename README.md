@@ -11,11 +11,11 @@ The SOILSENS-V5W is a reliable wireless capacitive soil moisture sensor that uti
 
 ## 🛒 Can be purchased from http://www.PricelessToolkit.com
 
-## Initial Power On and Default Operation
+# Initial Power On and Default Operation
 - SOILSENS-V5W supports two modes: ESP-NOW and WiFi for MQTT-based connectivity.
 - Upon powering on, the SOILSENS-V5W operates in ESP-NOW mode by default. This mode does not require any initial configuration and communicates directly with the Capibridge gateway. Default Key is "xy"
 
-## 2. Configuration
+## 1. Configuration
 
 To access the configuration settings, follow these steps:
 
@@ -45,7 +45,7 @@ To access the configuration settings, follow these steps:
 
 After entering the necessary information, click **Submit** to save the configuration. The sensor will restart with the new settings.
 
-## 3. Calibrating the Soil Moisture Sensor
+## 2. Calibrating the Soil Moisture Sensor
 
 Accurate soil moisture readings require proper calibration. Follow these steps:
    - Put the sensor in dry soil.
@@ -59,9 +59,12 @@ Accurate soil moisture readings require proper calibration. Follow these steps:
    - The device will complete the `wet soil` calibration, indicated by three blinks.
 
 
+# PCB Assembly
+This project is open-source, allowing you to assemble SOILSENS-V5W on your own. To simplify this process, I've provided an "Interactive HTML Boom File" located in the PCB folder. This interactive file helps you identify where to solder each component and polarity, reducing the chances of errors to a minimum. But if you don't feel confident in assembling it yourself, you can always opt to purchase a pre-assembled board from my [Shop](https://www.pricelesstoolkit.com)
+
 ## Troubleshooting
 
- - Ensure you are following the correct sequence: hold the calibration button, briefly press the trigger button, and continue holding the calibration button.
+ - Holding the calibration button.
     -  More than 3 seconds configuration mode.
     -  Less than 3 seconds Calibration mode.
-- For connectivity issues in WiFi mode, verify the WiFi SSID, password, MAC, Channel, and MQTT server details.
+- For connectivity issues in WiFi mode, verify the WiFi SSID, password, MAC, IP, Channel, and MQTT server details.

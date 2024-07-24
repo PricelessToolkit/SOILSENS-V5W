@@ -79,6 +79,9 @@ To access the configuration settings, follow these steps:
    - Continue holding the calibration button for more than 3 seconds and release it.
    - The blue LED will blink **five times**, indicating the device has entered configuration mode.
 
+> [!IMPORTANT]
+> Just entering the configuration mode will wipe all configurations, and the configuration will revert to the default `ESP-NOW` with key `xy`.
+
 2. **Access Configuration via WiFi:**
    - After entering configuration mode, the sensor creates a WiFi Access Point (AP) named `SOILSENS-V5W`.
    - Connect to this AP using the default password: `password`.

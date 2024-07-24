@@ -118,6 +118,10 @@ Accurate soil moisture readings require proper calibration. Follow these steps:
    - The device will complete the `wet soil` calibration, indicated by three blinks.
 
 
+> [!NOTE]
+>  Until the soil moisture sensor calibration is not performed, the sensor reading will be 0.
+
+
 # Do you want to assemble it yourself?
 <img src="img/sens-kc-pcb.png"/>
 This project is open-source, enabling you to assemble SOILSENS-V5W yourself. To make this easier, I've included an 'Interactive HTML BOM File' in the PCB folder, which guides you on where to solder each component and indicates polarity, minimizing the chance of errors. I've invested a lot of time and money into making this project open-source. Your support, whether through buying a ready-made device from my shop www.PricelessToolkit.com subscribing to my YouTube channel, or buying me a coffee, is greatly appreciated and helps fund future projects.

@@ -99,8 +99,10 @@ To access the configuration settings, follow these steps:
 
 After entering the necessary information, click **Submit** to save the configuration. The sensor will restart with the new settings.
 
+
 > [!IMPORTANT]
-> Just entering the configuration mode will wipe all configurations, and the configuration will revert to the default `ESP-NOW` with key `xy`.
+> Entering the configuration mode will wipe all configurations, and the configuration will revert to the default `ESP-NOW` with key `xy`.
+
 
 ## 2. Calibrating the Soil Moisture Sensor
 

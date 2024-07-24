@@ -12,7 +12,7 @@ The SOILSENS-V5W is a reliable wireless capacitive soil moisture sensor that uti
 <img src="img/ha_entity.png"/>
 
 
-## 🛒 Where to buy http://www.PricelessToolkit.com
+## 🛒 Where to buy https://www.PricelessToolkit.com
 
 ## 📣 Updates, Bugfixes, and Breaking Changes
 
@@ -85,9 +85,9 @@ Accurate soil moisture readings require proper calibration. Follow these steps:
    - The device will complete the `wet soil` calibration, indicated by three blinks.
 
 
-# DIY
+# Do you want to assemble it yourself?
 <img src="img/sens-kc-pcb.png"/>
-This project is open-source, allowing you to assemble SOILSENS-V5W on your own. To simplify this process, I've provided an "Interactive HTML Boom File" located in the PCB folder. This interactive file helps you identify where to solder each component and polarity, reducing the chances of errors to a minimum. But if you don't feel confident in assembling it yourself, you can always opt to purchase a pre-assembled board from my Shop https://www.pricelesstoolkit.com
+This project is open-source, enabling you to assemble SOILSENS-V5W yourself. To make this easier, I've included an 'Interactive HTML BOM File' in the PCB folder, which guides you on where to solder each component and indicates polarity, minimizing the chance of errors. I've invested a lot of time and money into making this project open-source. Your support, whether through buying a ready-made device from my shop www.PricelessToolkit.com subscribing to my YouTube channel, or buying me a coffee, is greatly appreciated and helps fund future projects.
 
 ## Schematic
 <details>

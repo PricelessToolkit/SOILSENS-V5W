@@ -140,17 +140,17 @@ void setup() {
     wifi_ssid = preferences.getString("ssid", "ssid");
     wifi_password = preferences.getString("password", "password");
     node_name = preferences.getString("nodeName", "SOILSENS-V5W");
-    gateway_key = preferences.getString("gatewayKey", "ab");
+    gateway_key = preferences.getString("gatewayKey", "xy");
     config_mode = preferences.getUInt("mode", 1);
-    mqtt_server = preferences.getString("mqttserver", "192.168.2.20");
+    mqtt_server = preferences.getString("mqttserver", "192.168.1.20");
     mqtt_port = preferences.getUInt("mqttport", 1883);
-    mqtt_username = preferences.getString("mqttusername", "mqtt");
-    mqtt_password = preferences.getString("mqttpassword", "Mqtt086852A");
-    local_ip = preferences.getString("localIP", "192.168.2.19");
-    gateway = preferences.getString("gateway", "192.168.2.1");
+    mqtt_username = preferences.getString("mqttusername", "xxxxx");
+    mqtt_password = preferences.getString("mqttpassword", "xxxxx");
+    local_ip = preferences.getString("localIP", "192.168.1.5");
+    gateway = preferences.getString("gateway", "192.168.1.1");
     subnet = preferences.getString("subnet", "255.255.255.0");
-    mac_address = preferences.getString("macAddress", "94:a6:7e:94:9b:81");
-    wifi_channel = preferences.getUInt("wifiChannel", 6);
+    mac_address = preferences.getString("macAddress", "xx:xx:xx:xx:xx:xx");
+    wifi_channel = preferences.getUInt("wifiChannel", 1);
     preferences.end();
 
     pinMode(calibrationButtonPin, INPUT);

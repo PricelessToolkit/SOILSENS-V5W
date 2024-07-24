@@ -1,4 +1,4 @@
-<img src="img/sens-kc-full.png"/>
+<img src="img/sens-kc-full.jpg"/>
 
 🤗 Please consider subscribing to my [YouTube channel](https://www.youtube.com/@PricelessToolkit/videos) Your subscription goes a long way in backing my work. if you feel more generous, you can buy me a coffee
 

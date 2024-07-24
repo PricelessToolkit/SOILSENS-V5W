@@ -50,7 +50,7 @@ To access the configuration settings, follow these steps:
    - **Node Name:** Enter a unique name for your sensor.
    - **Gateway Key:** Enter the key for the Capibridge gateway.
    - **Mode:** Select the desired mode:
-     - **1 (ESP-NOW):** For communication with Capibridge.
+     - **1 (ESP-NOW):** For communication with Capibridge "Long-Range".
      - **0 (WiFi):** For standard WiFi and MQTT setup.
    - For WiFi mode:
      - **WiFi SSID:** Enter your WiFi network name.

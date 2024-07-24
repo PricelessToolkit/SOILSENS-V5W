@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/PricelessToolkit/SOILSENS-V5/main/img/banner.jpg"/>
+<img src="https://raw.githubusercontent.com/PricelessToolkit/SOILSENS-V5W/main/img/banner.jpg"/>
 
 🤗 Please consider subscribing to my [YouTube channel](https://www.youtube.com/@PricelessToolkit/videos) Your subscription goes a long way in backing my work. if you feel more generous, you can buy me a coffee
 
@@ -8,6 +8,9 @@
 # Wireless "SOILSENS-V5W" and Wired ["SOILSENS-V5"](https://github.com/PricelessToolkit/SOILSENS-V5)
 
 The SOILSENS-V5W is a reliable wireless capacitive soil moisture sensor that utilizes "ESP-NOW or Wi-Fi" for connectivity. It includes a soil temperature sensor, an air humidity and temperature sensor, and a light intensity sensor. One of its key advantages is that the capacitive sensor electrodes are embedded within the inner layer of the PCB, providing protection. It boasts very low power consumption, a compact design, long-range capabilities in ESP-NOW mode, and configuration changes can be made without the need for reflashing. Additionally, it supports MQTT Autodiscovery through CapiBridge in ESP-NOW mode or simple Wi-Fi, making it 100% compatible with Home Assistant.
+
+<img src="https://raw.githubusercontent.com/PricelessToolkit/SOILSENS-V5W/main/img/ha_entity.png"/>
+
 
 ## 🛒 Can be purchased from http://www.PricelessToolkit.com
 

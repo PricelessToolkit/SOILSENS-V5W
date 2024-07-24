@@ -44,6 +44,33 @@ ____________
 | **Gateway Requirement**       | Requires a gateway [Capibridge](https://github.com/PricelessToolkit/CapiBridge)                                             | Does not require a gateway                    |
 
 
+## Product Specification
+
+- **Microcontroller:**
+   - ESP32-C3
+   - Wi-Fi or ESP-NOW
+- **Sensors:**
+   - Soil Temperature: TMP102
+   - Air Temperature and Humidity: AHT20
+   - Light Sensor: ALS-PT19-315C
+   - Soil Moisture: PCB Trace in the internal layer
+- **Power:**
+   - Uses 1S LiPo Battery "Connector PH2.0"
+   - Requires external 1S LiPo charger
+- **Buttons:**
+   - PRG (Programming)
+   - RST (Reset)
+   - CAL (Calibration)
+   - TRG (Trigger)
+- **LED Indicators:**
+   - Green LED: Indicates the power-on state
+   - Blue LED: Indicates calibration/configuration mode
+- **Sensor Reading Interval:**
+  - Default: 1 hour
+  - Configurable: 15m, 30m, 1h, 2h
+  - Configuration Method: Adjustable via onboard PCB solder jumpers
+
+
 ## 1. Configuration
 
 To access the configuration settings, follow these steps:

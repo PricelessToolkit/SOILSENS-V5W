@@ -78,7 +78,11 @@ Accurate soil moisture readings require proper calibration. Follow these steps:
 <img src="img/sens-kc-pcb.png"/>
 This project is open-source, allowing you to assemble SOILSENS-V5W on your own. To simplify this process, I've provided an "Interactive HTML Boom File" located in the PCB folder. This interactive file helps you identify where to solder each component and polarity, reducing the chances of errors to a minimum. But if you don't feel confident in assembling it yourself, you can always opt to purchase a pre-assembled board from my Shop https://www.pricelesstoolkit.com
 
-
+## Schematic
+<details>
+  <summary>View schematic. Click here</summary>
+<img src="schematic.jpg"/>
+</details>
 
 ## Programming using Arduino IDE
 

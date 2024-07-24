@@ -50,13 +50,13 @@ To access the configuration settings, follow these steps:
    - **Node Name:** Enter a unique name for your sensor.
    - **Gateway Key:** Enter the key for the [Capibridge gateway.](https://github.com/PricelessToolkit/CapiBridge) for WIFI Mode not required
    - **Mode:** Select the desired mode:
-     - **1 (ESP-NOW):** For communication with [Capibridge gateway.](https://github.com/PricelessToolkit/CapiBridge) "Long-Range".
-     - **0 (WiFi):** For standard WiFi and MQTT setup.
+     - **1 (ESP-NOW):** Selects ESP-NOW Protocol "Long-Range".
+     - **0 (WiFi):** Selects standard WiFi and MQTT setup.
    - For WiFi mode:
      - **WiFi SSID:** Enter your WiFi network name.
      - **Password:** Enter the WiFi password.
-     - **MAC Address:** Specify the MAC address if needed.
-     - **Local IP, Gateway, Subnet:** Enter IP configuration details.
+     - **MAC Address:** Specify the MAC address "9b:84:5a.....".
+     - **Local IP, Gateway, Subnet:** Enter IP configuration details "Use IP Address outside of DHCP Range".
      - **MQTT Server, Port, Username, Password:** Provide MQTT broker details.
 
 After entering the necessary information, click **Submit** to save the configuration. The sensor will restart with the new settings.

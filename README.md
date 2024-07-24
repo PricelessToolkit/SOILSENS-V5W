@@ -108,7 +108,7 @@ This project is open-source, allowing you to assemble SOILSENS-V5W on your own. 
        
 <img src="img/board_config.jpg"/>
        
-  4. - Connect USBTTL adapter to SOILSENS-V5W
+  4. - Connect 3.3V USBTTL adapter to SOILSENS-V5W
 
    | Sensor Pin | Adapter Pin |
    |------------|-------------|

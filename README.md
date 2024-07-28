@@ -141,14 +141,14 @@ But if you are bored and want to play with different intervals you can change th
 
 | Time Interval | Resistor Value (kΩ) | Time Interval | Resistor Value (kΩ) |
 |---------------|------------------------|---------------|------------------------|
-| 1 min         | 22.021                 | 10 min        | 57.437                 |
+| 1 min         | 22.00                  | 10 min        | 57.6 - soldered        |
 | 2 min         | 29.349                 | 20 min        | 77.579                 |
-| 3 min         | 34.729                 | 30 min        | 92.233                 |
+| 3 min         | 34.729                 | 30 min        | 93.1 - soldered        |
 | 4 min         | 39.097                 | 40 min        | 104.625                |
-| 5 min         | 42.887                 | 50 min        | 115.331                |
-| 6 min         | 46.301                 | 1 h           | 124.856                |
+| 5 min         | 42.2 - soldered        | 50 min        | 115.331                |
+| 6 min         | 46.301                 | 1 h           | 124.00 - soldered      |
 | 7 min         | 49.392                 | 1h 30min      | 149.398                |
-| 8 min         | 52.224                 | 2 h           | 170.00                 |
+| 8 min         | 52.224                 | 2 h           | 169.00 - soldered      |
 | 9 min         | 54.902                 |
 
 > [!NOTE]

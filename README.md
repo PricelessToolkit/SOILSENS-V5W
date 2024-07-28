@@ -84,6 +84,13 @@ To access the configuration settings, follow these steps:
    - Connect to this AP using the default password: `password`.
    - Open a web browser and navigate to `http://192.168.4.1` to access the configuration page.
 
+
+| Mode ESP-NOW | Mode Wi-Fi |
+|--------------|------------|
+| Requires node name and key. | Only the key is not required. |
+| ![Image 1](img/hotspot1.jpg) | ![Image 2](img/hotspot2.jpg) |
+
+
 3. **Web Configuration:**
    - **Node Name:** Enter a unique name for your sensor.
    - **Gateway Key:** Enter the key for the [Capibridge gateway.](https://github.com/PricelessToolkit/CapiBridge) for WIFI Mode not required

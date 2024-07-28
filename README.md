@@ -9,7 +9,7 @@
 
 # Wireless "SOILSENS-V5W" and Wired ["SOILSENS-V5"](https://github.com/PricelessToolkit/SOILSENS-V5)
 
-The SOILSENS-V5W is a reliable wireless capacitive soil moisture sensor that utilizes "ESP-NOW or Wi-Fi" for connectivity. It includes a soil temperature sensor, an air humidity and temperature sensor, and a light intensity sensor. One of its key advantages is that the capacitive sensor electrodes are embedded within the inner layer of the PCB, providing protection. It boasts very low power consumption, a compact design, long-range capabilities in ESP-NOW mode, and configuration changes can be made without the need for reflashing. Additionally, it supports MQTT Autodiscovery through CapiBridge in ESP-NOW mode or simple Wi-Fi, making it 100% compatible with Home Assistant.
+The SOILSENS-V5W is a reliable wireless capacitive soil moisture sensor that utilizes `ESP-NOW or Wi-Fi` for connectivity. It includes a soil temperature sensor, an air humidity and temperature sensor, and a light intensity sensor. One of its key advantages is that the capacitive sensor electrodes are embedded within the inner layer of the PCB, providing protection. It boasts very low power consumption, a compact design, long-range capabilities in ESP-NOW mode, and configuration changes can be made without the need for reflashing. Additionally, it supports MQTT Autodiscovery through CapiBridge in ESP-NOW mode or simple Wi-Fi, making it 100% compatible with Home Assistant.
 
 <img src="img/ha_entity.png"/>
 
@@ -31,13 +31,13 @@ The SOILSENS-V5W is a reliable wireless capacitive soil moisture sensor that uti
 ____________
 
 # Initial Power On and Default Operation
-- SOILSENS-V5W supports two modes: ESP-NOW and WiFi for MQTT-based connectivity.
+- SOILSENS-V5W supports two modes: `ESP-NOW` and `WiFi` for MQTT-based connectivity.
 - Upon powering on, the SOILSENS-V5W operates in ESP-NOW mode by default. This mode does not require any initial configuration and communicates directly with the [Capibridge gateway](https://github.com/PricelessToolkit/CapiBridge). The default Gateway Key is "xy"
 
 
 | **Feature**                   | **ESP-NOW**                                                                 | **WiFi**                                      |
 |-------------------------------|-----------------------------------------------------------------------------|-----------------------------------------------|
-| **Energy Efficiency**         | Highly energy-efficient                                                     | 5x Higher power consumption                   |
+| **Energy Efficiency**         | Highly energy-efficient                                                     | ~5x Higher power consumption                   |
 | **Range**                     | Long-Range                                                                  | Short range                                   |
 | **Configuration**             | Does not require configuration                                              | Requires network and MQTT configuration       |
 | **Broadcasting**              | Sensor data can be read from a third device without connecting to a network | Requires connection to a network              |

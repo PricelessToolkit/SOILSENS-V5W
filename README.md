@@ -100,7 +100,7 @@ To access the configuration settings, follow these steps:
    - For WiFi mode:
      - **WiFi SSID:** Enter your WiFi network name.
      - **Password:** Enter the WiFi password.
-     - **MAC Address:** Specify the MAC address "9b:84:5a.....".
+     - **MAC Address:** Specify the Access point MAC address "9b:84:5a.....".
      - **Local IP, Gateway, Subnet:** Enter IP configuration details "Use IP Address outside of DHCP Range".
      - **MQTT Server, Port, Username, Password:** Provide MQTT broker details.
 

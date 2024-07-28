@@ -101,14 +101,14 @@ To access the configuration settings, follow these steps:
      - **WiFi SSID:** Enter your WiFi network name.
      - **Password:** Enter the WiFi password.
      - **MAC Address:** Specify the Access point MAC address "9b:84:5a.....".
-     - **Local IP, Gateway, Subnet:** Enter IP configuration details "Use IP Address outside of DHCP Range".
+     - **Local IP, Gateway, Subnet:** Enter IP address ⚠️ "IP Address outside of DHCP Range".
      - **MQTT Server, Port, Username, Password:** Provide MQTT broker details.
 
 After entering the necessary information, click **Submit** to save the configuration. The sensor will restart with the new settings.
 
 
 > [!IMPORTANT]
-> Entering to configuration mode will erase all current settings. Therefore, if you enter configuration mode without saving any changes, all settings will revert to their factory defaults, such as `ESP-NOW` with Key `xy`.
+> ⚠️ Entering to configuration mode will erase all current settings. Therefore, if you enter configuration mode without saving any changes, all settings will revert to their factory defaults, such as `ESP-NOW` with Key `xy`.
 
 
 ## 2. Calibrating the Soil Moisture Sensor
@@ -125,8 +125,8 @@ Accurate soil moisture readings require proper calibration. Follow these steps:
    - The device will complete the `wet soil` calibration, indicated by three blinks.
 
 
-> [!NOTE]
->  Until the soil moisture sensor calibration is not performed, the sensor reading will be 0.
+> [!IMPORTANT]
+>  ⚠️ Until the soil moisture sensor calibration is not performed, the sensor reading will be 0.
 
 
 # Do you want to assemble it yourself?

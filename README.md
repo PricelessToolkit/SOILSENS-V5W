@@ -66,7 +66,7 @@ ____________
    - Blue LED: Indicates calibration/configuration mode
 - **Sensor Reading Interval:**
   - Default: 1 hour
-  - Configurable: 15m, 30m, 1h, 2h
+  - Configurable: 5m, 10m, 30m, 1h, and 2h
   - Configuration Method: Adjustable via onboard PCB solder jumpers
 
 
@@ -132,12 +132,9 @@ Accurate soil moisture readings require proper calibration. Follow these steps:
 
 ## Wake Up Timers
 
-> [!NOTE]
-> By default, the timer is set to 1 Hour.
-
 | Solder Jumpers | Timers |
 |--------------|------------|
-| ![Image 1](img/solder-jumper.jpg) |  You can change it by cutting the middle of the 1H Jumper. Then bridge the other jumper with the solder. Available intervals are 5M, 10M, 30M, 1H, and 2H, plus every combination is possible  |
+| ![Image 1](img/solder-jumper.jpg) |  You can change it by cutting the middle of the 1H Jumper. Then bridge the other jumper with the solder. Available intervals are 5m, 10m, 30m, 1h, and 2h, plus every combination is possible  |
 
 
 But if you are bored and want to play with different intervals you can change the resistor value.
@@ -153,6 +150,9 @@ But if you are bored and want to play with different intervals you can change th
 | 7 min         | 49.392                 | 1h 30min      | 149.398                |
 | 8 min         | 52.224                 | 2 h           | 170.00                 |
 | 9 min         | 54.902                 |
+
+> [!NOTE]
+> By default, the timer is set to 1 Hour. Reducing the time will result in increased energy consumption.
 
 
 # Do you want to assemble it yourself?

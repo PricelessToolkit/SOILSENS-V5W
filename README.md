@@ -130,7 +130,7 @@ Accurate soil moisture readings require proper calibration. Follow these steps:
 
 
 
-## Wake Up Interval
+## 3. Wake Up Interval
 
 | Solder Jumpers | interval selection |
 |--------------|------------|

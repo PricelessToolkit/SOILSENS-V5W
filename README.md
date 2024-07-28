@@ -134,7 +134,7 @@ Accurate soil moisture readings require proper calibration. Follow these steps:
 
 | Solder Jumpers | Timers |
 |--------------|------------|
-| ![Image 1](img/solder-jumper.jpg) |  You can change it by cutting the middle of the 1H Jumper. Then bridge the other jumper with the solder. Available intervals are 5m, 10m, 30m, 1h, and 2h, plus every combination is possible  |
+| ![Image 1](img/solder-jumper.jpg) |  You can change it by cutting the middle of the 1H Jumper. Then bridge the other jumper with the solder. Available intervals are 5m, 10m, 30m, 1h, and 2h, plus every combination is possible. [Parallel Resistor Calculator](https://www.digikey.fr/en/resources/conversion-calculators/conversion-calculator-parallel-and-series-resistor?utm_adgroup=Resistors&utm_source=google&utm_medium=cpc&utm_campaign=Dynamic%20Search_EN_Product&utm_term=&productid=&utm_content=Resistors&utm_id=go_cmp-9416220174_adg-92817183582_ad-676992152346_dsa-56185200348_dev-c_ext-_prd-_sig-CjwKCAjw2Je1BhAgEiwAp3KY79SzTfH1C_ZeBWNZqrVpeANAvpTVWQipCZKAlBfRqYBXxTiVhI5DOxoCsFoQAvD_BwE&gad_source=1&gclid=CjwKCAjw2Je1BhAgEiwAp3KY79SzTfH1C_ZeBWNZqrVpeANAvpTVWQipCZKAlBfRqYBXxTiVhI5DOxoCsFoQAvD_BwE) |
 
 
 But if you are bored and want to play with different intervals you can change the resistor value.

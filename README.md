@@ -37,7 +37,7 @@ ____________
 
 | **Feature**                   | **ESP-NOW**                                                                 | **WiFi**                                      |
 |-------------------------------|-----------------------------------------------------------------------------|-----------------------------------------------|
-| **Energy Efficiency**         | Highly energy-efficient                                                     | 5x Higher power consumption                   |
+| **Energy Efficiency**         | Highly energy-efficient                                                     | ~5x Higher power consumption                   |
 | **Range**                     | Long-Range                                                                  | Short range                                   |
 | **Configuration**             | Does not require configuration                                              | Requires network and MQTT configuration       |
 | **Broadcasting**              | Sensor data can be read from a third device without connecting to a network | Requires connection to a network              |

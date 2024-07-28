@@ -140,17 +140,17 @@ void setup() {
     wifi_ssid = preferences.getString("ssid", "ssid");
     wifi_password = preferences.getString("password", "password");
     node_name = preferences.getString("nodeName", "SOILSENS-V5W");
-    gateway_key = preferences.getString("gatewayKey", "xy");
+    gateway_key = preferences.getString("gatewayKey", "ab");
     config_mode = preferences.getUInt("mode", 1);
-    mqtt_server = preferences.getString("mqttserver", "192.168.1.20");
+    mqtt_server = preferences.getString("mqttserver", "192.168.2.20");
     mqtt_port = preferences.getUInt("mqttport", 1883);
-    mqtt_username = preferences.getString("mqttusername", "xxxxx");
-    mqtt_password = preferences.getString("mqttpassword", "xxxxx");
-    local_ip = preferences.getString("localIP", "192.168.1.5");
-    gateway = preferences.getString("gateway", "192.168.1.1");
+    mqtt_username = preferences.getString("mqttusername", "mqtt");
+    mqtt_password = preferences.getString("mqttpassword", "Mqttpass");
+    local_ip = preferences.getString("localIP", "192.168.2.19");
+    gateway = preferences.getString("gateway", "192.168.2.1");
     subnet = preferences.getString("subnet", "255.255.255.0");
-    mac_address = preferences.getString("macAddress", "xx:xx:xx:xx:xx:xx");
-    wifi_channel = preferences.getUInt("wifiChannel", 1);
+    mac_address = preferences.getString("macAddress", "94:a6:7e:99:99:99");
+    wifi_channel = preferences.getUInt("wifiChannel", 6);
     preferences.end();
 
     pinMode(calibrationButtonPin, INPUT);
@@ -237,6 +237,19 @@ int getAverageSoilMoisture() {
     int average = total / 5;
     return average;
 }
+
+
+int getAverageVoltage() {
+    int total = 0;
+    for (int i = 0; i < 5; i++) {
+        int adcRow = adc1_get_raw(ADC1_CHANNEL_0);
+        total += adcRow;
+    }
+    int averageVolts = total / 5;
+    return averageVolts;
+}
+
+
 
 void calibrateSoilMoistureSensor() {
     preferences.begin("soilCalib", false);
@@ -598,16 +611,15 @@ void publishmqtt() {
 }
 
 void loop() {
-    esp_adc_cal_characteristics_t adc_chars;
-    esp_adc_cal_characterize(ADC_UNIT_1, ADC_ATTEN_DB_11, ADC_WIDTH_BIT_12, DEFAULT_VREF, &adc_chars);
-    uint32_t raw = adc1_get_raw(ADC1_CHANNEL_0);
-    uint32_t voltage = esp_adc_cal_raw_to_voltage(raw, &adc_chars);
-    float Vout = voltage / 1000.0;
-    float Vbattery = Vout * 2;
-    float bpercentage = ((Vbattery - 3.2) / (4.15 - 3.2)) * 100;
+    // Battery Voltage
+    int averageVolts = getAverageVoltage();
+    int bpercentage = map(averageVolts, 2058, 2730, 0, 100);
     batteryPercentage = constrain(bpercentage, 0, 100);
 
+    // Light Sensor
     light = adc1_get_raw(ADC1_CHANNEL_1);
+
+    // Soile Moisture
     int soilMoisture = getAverageSoilMoisture();
     int mpercent = map(soilMoisture, drySoilValue, wetSoilValue, 0, 100);
     soilMpercent = constrain(mpercent, 0, 100);
@@ -633,5 +645,5 @@ void loop() {
         publishmqtt();
     }
     
-    delay(1000);
+    //delay(1000);
 }

@@ -152,7 +152,7 @@ But if you are bored and want to play with different intervals you can change th
 | 9 min         | 54.902                 |
 
 > [!NOTE]
-> By default, the timer is set to 1 Hour. Reducing the time interval will result in increased energy consumption.
+> Default time interval is 1 Hour. Reducing the time interval will result in increased energy consumption.
 
 
 # DIY

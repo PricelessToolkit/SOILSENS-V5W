@@ -129,6 +129,32 @@ Accurate soil moisture readings require proper calibration. Follow these steps:
 >  ⚠️ Until the soil moisture sensor calibration is not performed, the sensor reading will be 0.
 
 
+
+## Wake Up Timers
+
+> [!NOTE]
+> By default, the timer is set to 1 Hour.
+
+| Solder Jumpers | Timers |
+|--------------|------------|
+| ![Image 1](img/solder-jumper.jpg) |  You can change it by cutting the middle of the 1H Jumper. Then bridge the other jumper with the solder. Available intervals are 5M, 10M, 30M, 1H, and 2H, plus every combination is possible  |
+
+
+But if you are bored and want to play with different intervals you can change the resistor value.
+
+| Time Interval | Resistor Value (kΩ) | Time Interval | Resistor Value (kΩ) |
+|---------------|------------------------|---------------|------------------------|
+| 1 min         | 22.021                 | 10 min        | 57.437                 |
+| 2 min         | 29.349                 | 20 min        | 77.579                 |
+| 3 min         | 34.729                 | 30 min        | 92.233                 |
+| 4 min         | 39.097                 | 40 min        | 104.625                |
+| 5 min         | 42.887                 | 50 min        | 115.331                |
+| 6 min         | 46.301                 | 1 h           | 124.856                |
+| 7 min         | 49.392                 | 1h 30min      | 149.398                |
+| 8 min         | 52.224                 | 2 h           | 170.00                 |
+| 9 min         | 54.902                 |
+
+
 # Do you want to assemble it yourself?
 <img src="img/sens-kc-pcb.png"/>
 This project is open-source, enabling you to assemble SOILSENS-V5W yourself. To make this easier, I've included an 'Interactive HTML BOM File' in the PCB folder, which guides you on where to solder each component and indicates polarity, minimizing the chance of errors. I've invested a lot of time and money into making this project open-source. Your support, whether through buying a ready-made device from my shop www.PricelessToolkit.com subscribing to my YouTube channel, or buying me a coffee, is greatly appreciated and helps fund future projects.

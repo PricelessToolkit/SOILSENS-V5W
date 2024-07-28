@@ -130,9 +130,9 @@ Accurate soil moisture readings require proper calibration. Follow these steps:
 
 
 
-## Wake Up Timers
+## Wake Up Interval
 
-| Solder Jumpers | Timers |
+| Solder Jumpers | interval selection |
 |--------------|------------|
 | ![Image 1](img/solder-jumper.jpg) |  You can change it by cutting the middle of the 1H Jumper. Then bridge the other jumper with the solder. Available intervals are 5m, 10m, 30m, 1h, and 2h, plus every combination is possible. [Parallel Resistor Calculator](https://www.digikey.fr/en/resources/conversion-calculators/conversion-calculator-parallel-and-series-resistor?utm_adgroup=Resistors&utm_source=google&utm_medium=cpc&utm_campaign=Dynamic%20Search_EN_Product&utm_term=&productid=&utm_content=Resistors&utm_id=go_cmp-9416220174_adg-92817183582_ad-676992152346_dsa-56185200348_dev-c_ext-_prd-_sig-CjwKCAjw2Je1BhAgEiwAp3KY79SzTfH1C_ZeBWNZqrVpeANAvpTVWQipCZKAlBfRqYBXxTiVhI5DOxoCsFoQAvD_BwE&gad_source=1&gclid=CjwKCAjw2Je1BhAgEiwAp3KY79SzTfH1C_ZeBWNZqrVpeANAvpTVWQipCZKAlBfRqYBXxTiVhI5DOxoCsFoQAvD_BwE) |
 
@@ -155,7 +155,7 @@ But if you are bored and want to play with different intervals you can change th
 > By default, the timer is set to 1 Hour. Reducing the time interval will result in increased energy consumption.
 
 
-# Do you want to assemble it yourself?
+# DIY
 <img src="img/sens-kc-pcb.png"/>
 This project is open-source, enabling you to assemble SOILSENS-V5W yourself. To make this easier, I've included an 'Interactive HTML BOM File' in the PCB folder, which guides you on where to solder each component and indicates polarity, minimizing the chance of errors. I've invested a lot of time and money into making this project open-source. Your support, whether through buying a ready-made device from my shop www.PricelessToolkit.com subscribing to my YouTube channel, or buying me a coffee, is greatly appreciated and helps fund future projects.
 

@@ -87,7 +87,7 @@ To access the configuration settings, follow these steps:
 
 | Mode ESP-NOW | Mode Wi-Fi |
 |--------------|------------|
-| Requires node name and key. | Only the key is not required. |
+| Default Node name and key. | Only the key is not required. |
 | ![Image 1](img/hotspot1.jpg) | ![Image 2](img/hotspot2.jpg) |
 
 

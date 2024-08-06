@@ -1,4 +1,4 @@
-<img src="img/sens-kc-full.jpg"/>
+<img src="img/header.jpg"/>
 
 # 🚧WORK IN PROGRESS...
 
@@ -154,7 +154,6 @@ But if you are bored and want to play with different intervals you can change th
 > [!NOTE]
 > Default time interval is 1 Hour. Reducing the time interval will result in increased energy consumption.
 
-
 # DIY
 <img src="img/sens-kc-pcb.png"/>
 This project is open-source, enabling you to assemble SOILSENS-V5W yourself. To make this easier, I've included an 'Interactive HTML BOM File' in the PCB folder, which guides you on where to solder each component and indicates polarity, minimizing the chance of errors. I've invested a lot of time and money into making this project open-source. Your support, whether through buying a ready-made device from my shop www.PricelessToolkit.com subscribing to my YouTube channel, or buying me a coffee, is greatly appreciated and helps fund future projects.
@@ -200,6 +199,11 @@ This project is open-source, enabling you to assemble SOILSENS-V5W yourself. To 
 5. - Press and hold the **PRG** button on the sensor.
 6. - While holding the **PRG** button, connect the USB to TTL adapter to the USB port of your computer.
 7. - Click on the **Upload** button to upload the code to the sensor.
+
+
+## 3D-Printed Case
+The ideal material for the case is transparent and UV-resistant. ASA "UV-resistant" or ABS in white is the best choice as it allows light to enter, enabling the luminance sensor to function properly. For indoor use, consider translucent PETG to increase the luminance sensor's range and opt for a 3D-printed case with vent holes to ensure proper function of the air humidity and temperature sensors. For outdoor use, a case without vent holes is recommended to prevent water ingress during heavy! rain. 
+<img src="img/3dcolor.jpg"/>
 
 ## Troubleshooting
 

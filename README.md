@@ -53,10 +53,9 @@ ____________
 | **Active Duration (seconds)**       | 1.6 seconds                | 0.55 seconds              |
 | **Current During Active Phase**     | 45 mA                      | 40 mA                     |
 | **Energy Consumption in Active Phase (mAh)** | 0.02 mAh                  | 0.006112 mAh              |
-| **Inactive Duration (hours)**       | 0.99956 hours              | 0.999847 hours            |
-| **Current During Inactive Phase**   | 70 nA                      | 70 nA                     |
-| **Energy Consumption in Inactive Phase (mAh)** | 0.00007 mAh              | 0.00007 mAh               |
-| **Total Energy Consumption (mAh)**  | 0.02007 mAh                | 0.006182 mAh              |
+| **Inactive Duration**       | 0.99956 hours              | 0.999847 hours            |
+| **Energy Consumption in Inactive Phase** | 0.00007 mAh              | 0.00007 mAh               |
+| **Total Energy Consumption**  | 0.02007 mAh                | 0.006182 mAh              |
 | **Total Hours of Operation**        | 12,459 hours               | 40,445 hours              |
 | **Total Days of Operation**         | 519 days                   | 1,685 days                |
 

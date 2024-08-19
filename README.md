@@ -37,11 +37,29 @@ ____________
 
 | **Feature**                   | **ESP-NOW**                                                                 | **WiFi**                                      |
 |-------------------------------|-----------------------------------------------------------------------------|-----------------------------------------------|
-| **Energy Efficiency**         | Highly energy-efficient                                                     | ~5x Higher power consumption                   |
+| **Energy Efficiency**         | Highly energy-efficient                                                     | ~3x Higher power consumption                   |
 | **Range**                     | Long-Range                                                                  | Short range                                   |
 | **Configuration**             | Does not require configuration                                              | Requires network and MQTT configuration       |
 | **Broadcasting**              | Sensor data can be read from a third device without connecting to a network | Requires connection to a network              |
 | **Gateway Requirement**       | Requires a gateway [Capibridge](https://github.com/PricelessToolkit/CapiBridge)                                             | Does not require a gateway                    |
+
+
+## Power consumption
+> [!NOTE]
+> Measured using ``Power Profiler KIT 2`` Battery Capacity 250mAh, Power Cycle 1h
+
+| **Parameter**                       | **WIFI**               | **ESP-NOW**              |
+|-------------------------------------|----------------------------|---------------------------|
+| **Active Duration (seconds)**       | 1.6 seconds                | 0.55 seconds              |
+| **Current During Active Phase**     | 45 mA                      | 40 mA                     |
+| **Energy Consumption in Active Phase** | 0.02 mAh                  | 0.006112 mAh              |
+| **Inactive Duration**       | 0.99956 hours              | 0.999847 hours            |
+| **Energy Consumption in Inactive Phase** | 0.00007 mAh              | 0.00007 mAh               |
+| **Total Energy Consumption**  | 0.02007 mAh                | 0.006182 mAh              |
+| **Total Hours of Operation**        | 12,459 hours               | 40,445 hours              |
+| **Total Days of Operation**         | 519 days                   | 1,685 days                |
+
+
 
 
 ## Product Specification

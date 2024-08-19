@@ -52,7 +52,7 @@ ____________
 |-------------------------------------|----------------------------|---------------------------|
 | **Active Duration (seconds)**       | 1.6 seconds                | 0.55 seconds              |
 | **Current During Active Phase**     | 45 mA                      | 40 mA                     |
-| **Energy Consumption in Active Phase (mAh)** | 0.02 mAh                  | 0.006112 mAh              |
+| **Energy Consumption in Active Phase** | 0.02 mAh                  | 0.006112 mAh              |
 | **Inactive Duration**       | 0.99956 hours              | 0.999847 hours            |
 | **Energy Consumption in Inactive Phase** | 0.00007 mAh              | 0.00007 mAh               |
 | **Total Energy Consumption**  | 0.02007 mAh                | 0.006182 mAh              |

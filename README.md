@@ -1,4 +1,4 @@
-<img src="img/header.jpg"/>
+<img src="img/sens-cap.png"/>
 
 # 🚧WORK IN PROGRESS...
 

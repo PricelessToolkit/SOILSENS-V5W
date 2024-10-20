@@ -223,9 +223,15 @@ This project is open-source, enabling you to assemble SOILSENS-V5W yourself. To 
 The ideal material for the case is transparent and UV-resistant. ASA "UV-resistant" or ABS in white is the best choice as it allows light to enter, enabling the luminance sensor to function properly. For indoor use, consider translucent PETG to increase the luminance sensor's range and opt for a 3D-printed case with vent holes to ensure proper function of the air humidity and temperature sensors. For outdoor use, a case without vent holes is recommended to prevent water ingress during heavy! rain. 
 <img src="img/3dcolor.jpg"/>
 
+
+## Frequently Asked Questions
+### Why is my sensor giving inconsistent readings?
+Due to the capacitive sensing principle, readings can vary based on soil moisture, tightness, and insertion depth. Repeated insertions might loosen the soil, affecting subsequent readings.
+
+
 ## Troubleshooting
 
  - Holding the calibration button.
     -  More than 3 seconds configuration mode.
-    -  Less than 3 seconds Calibration mode.
+    -  Less than 2 seconds Calibration mode.
 - For connectivity issues in WiFi mode, verify the WiFi SSID, password, MAC, IP, Channel, and MQTT server details.

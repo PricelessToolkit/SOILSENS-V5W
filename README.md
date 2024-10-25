@@ -16,6 +16,14 @@ The SOILSENS-V5W is a reliable wireless capacitive soil moisture sensor that uti
 
 ## 🛒 Where to buy https://www.PricelessToolkit.com
 
+### Battery and Charger.
+- 1S 250mAh LiPo Battery (Connector PH2.0) 35x20x4mm.
+   - https://s.click.aliexpress.com/e/_Dk14vS5
+   - https://s.click.aliexpress.com/e/_DE5PfEV
+- 1S LiPo charger.
+   - https://s.click.aliexpress.com/e/_DeYXmNP
+   - https://fr.aliexpress.com/item/4000413704083.html
+
 ## 📣 Updates, Bugfixes, and Breaking Changes
 
 > [!NOTE]

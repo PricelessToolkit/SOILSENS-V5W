@@ -38,6 +38,32 @@ The SOILSENS-V5W is a reliable wireless capacitive soil moisture sensor that uti
 
 ____________
 
+## Product Specification
+
+- **Microcontroller:**
+   - ESP32-C3
+- **Sensors:**
+   - Soil Temperature: TMP102
+   - Air Temperature and Humidity: AHT20
+   - Light Sensor: ALS-PT19-315C
+   - Soil Moisture: PCB Trace in the internal layer
+- **Power:**
+   - Uses 1S LiPo Battery "Connector PH2.0"
+   - Requires external 1S LiPo charger
+- **Buttons:**
+   - PRG (Programming)
+   - RST (Reset)
+   - CAL (Calibration)
+   - TRG (Trigger)
+- **LED Indicators:**
+   - Green LED: Indicates the power-on state
+   - Blue LED: Indicates calibration/configuration mode
+- **Sensor Reading Interval:**
+  - Default: 1 hour
+  - Configurable: 5m, 10m, 30m, 1h, and 2h
+  - Configuration Method: Adjustable via onboard PCB solder jumpers
+
+
 # Initial Power On and Default Operation
 - SOILSENS-V5W supports two modes: `ESP-NOW` and `WiFi` for MQTT-based connectivity.
 - Upon powering on, the SOILSENS-V5W operates in ESP-NOW mode by default. This mode does not require any initial configuration and communicates directly with the [Capibridge gateway](https://github.com/PricelessToolkit/CapiBridge). The default Gateway Key is "xy"
@@ -68,32 +94,6 @@ ____________
 | **Total Days of Operation**         | 519 days                   | 1,685 days                |
 
 
-
-
-## Product Specification
-
-- **Microcontroller:**
-   - ESP32-C3
-- **Sensors:**
-   - Soil Temperature: TMP102
-   - Air Temperature and Humidity: AHT20
-   - Light Sensor: ALS-PT19-315C
-   - Soil Moisture: PCB Trace in the internal layer
-- **Power:**
-   - Uses 1S LiPo Battery "Connector PH2.0"
-   - Requires external 1S LiPo charger
-- **Buttons:**
-   - PRG (Programming)
-   - RST (Reset)
-   - CAL (Calibration)
-   - TRG (Trigger)
-- **LED Indicators:**
-   - Green LED: Indicates the power-on state
-   - Blue LED: Indicates calibration/configuration mode
-- **Sensor Reading Interval:**
-  - Default: 1 hour
-  - Configurable: 5m, 10m, 30m, 1h, and 2h
-  - Configuration Method: Adjustable via onboard PCB solder jumpers
 
 
 ## 1. Configuration

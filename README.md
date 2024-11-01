@@ -202,7 +202,7 @@ This project is open-source, enabling you to assemble SOILSENS-V5W yourself. To 
 ## Schematic
 <details>
   <summary>View schematic. Click here</summary>
-<img src="schematic.jpg"/>
+<img src="PCB/Soilsens-V5W_Schematic.jpg"/>
 </details>
 
 ## Programming using Arduino IDE

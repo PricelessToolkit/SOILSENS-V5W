@@ -61,11 +61,15 @@ ____________
 - 1S 250mAh or less LiPo Battery (Connector PH2.0) 35x20x4mm.
    - https://s.click.aliexpress.com/e/_Dk14vS5
    - https://s.click.aliexpress.com/e/_DE5PfEV
-   - https://www.adafruit.com/product/1317
+   - 150mAh https://www.adafruit.com/product/1317
 
 > [!WARNING] 
 > ⚠️ Ensure the battery connector has the correct polarity, as batteries from China sometimes come with random polarity. If it’s incorrect, you can manually swap the wires by gently lifting the plastic retainer on the pin, pulling the wire out, and then reversing the polarity before reinserting it.
-> Connecting the battery with reverse polarity will damage the sensor permanently. Double-check the polarity before connecting the battery. Adafruit Video, Lipo Polarity explanation https://youtu.be/ILArrTIMFyM?si=WlTsnVo7XTozZ2FT
+> Connecting the battery with reverse polarity will damage the sensor permanently. Double-check the polarity before connecting the battery.
+
+
+> [!NOTE]
+> Lipo Polarity explanation "Adafruit Video" https://youtu.be/ILArrTIMFyM?si=WlTsnVo7XTozZ2FT
 
 
 - 1S 4.20V LiPo charger.

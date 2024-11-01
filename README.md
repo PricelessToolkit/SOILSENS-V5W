@@ -243,7 +243,9 @@ This project is open-source, enabling you to assemble SOILSENS-V5W yourself. To 
 
 
 ## 3D-Printed Case
-The ideal material for the case is transparent and UV-resistant. ASA "UV-resistant" or ABS in white is the best choice as it allows light to enter, enabling the luminance sensor to function properly. For indoor use, consider translucent PETG to increase the luminance sensor's range and opt for a 3D-printed case with vent holes to ensure proper function of the air humidity and temperature sensors. For outdoor use, a case without vent holes is recommended to prevent water ingress during heavy! rain. 
+The ideal material for the case is transparent and UV-resistant. ASA "UV-resistant" or ABS in white is the best choice as it allows light to enter, enabling the luminance sensor to function properly. For indoor use, consider translucent PETG to increase the luminance sensor's range and opt for a 3D-printed case with vent holes to ensure proper function of the air humidity and temperature sensors. For outdoor use, a case without vent holes is recommended to prevent water ingress during heavy! rain.
+Glue for case https://s.click.aliexpress.com/e/_DcvGBY9
+
 <img src="img/3dcolor.jpg"/>
 
 

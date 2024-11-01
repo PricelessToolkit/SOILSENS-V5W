@@ -261,7 +261,7 @@ void calibrateSoilMoistureSensor() {
     preferences.putUInt("drySoilValue", drySoilValue);
     blinkLED(3, 500); // Blink LED 3 times to indicate dry soil calibration is complete
 
-    delay(5000); // Wait 5 seconds for the user to place the sensor in wet soil
+    delay(10000); // Wait 5 seconds for the user to place the sensor in wet soil
 
     blinkLED(2, 500); // Blink LED 2 times to indicate wet soil calibration is starting
     delay(1000);

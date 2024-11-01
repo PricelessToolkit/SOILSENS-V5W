@@ -67,7 +67,7 @@ ____________
 > Connecting the battery with reverse polarity will damage the sensor permanently. Double-check the polarity before connecting the battery.
 
 
-- 1S LiPo charger.
+- 1S 4.20V LiPo charger.
   - The link will be updated soon
 
 > [!WARNING]  

@@ -259,4 +259,5 @@ Due to the capacitive sensing principle, readings can vary based on soil moistur
  - Holding the calibration button.
     -  More than 3 seconds configuration mode.
     -  Less than 2 seconds Calibration mode.
-- For connectivity issues in WiFi mode, verify the WiFi SSID, password, MAC, IP, Channel, and MQTT server details.
+- For connectivity issues in WiFi mode, verify the WiFi SSID, password, MAC, IP, Channel, and MQTT server details. Ensure the Wi-Fi signal strength at the installation point is strong and stable.
+- When manually pressing the trigger button, the sensor may occasionally stay on and not power off if the button is not released quickly enough. If this happens, simply press the reset button.

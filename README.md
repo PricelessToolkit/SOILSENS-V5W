@@ -156,12 +156,12 @@ After entering the necessary information, click **Submit** to save the configura
 
 Accurate soil moisture readings require proper calibration. Follow these steps:
    - Put the sensor in dry soil.
-   - Press and hold the calibration button.
+   - Press and hold the calibration button. `Avoid moving the sensor to keep it tightly embedded in the soil.`
    - While holding the calibration button, briefly press the trigger button.
    - Continue holding the calibration button for less than 2 seconds and release it.
    - The blue LED will blink twice, indicating the start of `dry soil` calibration.
    - The device will complete the calibration, indicated by three blinks.
-   - Place the sensor in fully wet soil, you have 5 seconds to do so.
+   - Place the sensor in fully wet soil, you have 10 seconds to do so.
    - The blue LED will blink twice, indicating the start of `wet soil` calibration.
    - The device will complete the `wet soil` calibration, indicated by three blinks.
 

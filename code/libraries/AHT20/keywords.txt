@@ -1,0 +1,29 @@
+==================================
+CLASS
+==================================
+AHT20	KEYWORD1
+
+==================================
+FUNCTIONS
+==================================
+begin	KEYWORD2
+isConnected	KEYWORD2
+available   KEYWORD2
+getStatus   KEYWORD2
+isCalibrated    KEYWORD2
+isBusy  KEYWORD2
+initialize	KEYWORD2
+triggerMEasurement  KEYWORD2
+readData    KEYWORD2
+softReset   KEYWORD2
+getTemperature  KEYWORD2
+getHumidity KEYWORD2
+
+==================================
+CONSTANTS
+==================================
+DEFAULT_ADDRESS	LITERAL1
+
+==================================
+DATA TYPES
+==================================

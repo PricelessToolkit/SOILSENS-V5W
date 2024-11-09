@@ -1,0 +1,33 @@
+######################################################################
+# Syntax Coloring Map for SparkFun TMP102 Temperature Sensor Library #
+######################################################################
+# Class
+######################################################################
+
+SparkFunTMP102	KEYWORD1
+TMP102	KEYWORD1
+
+######################################################################
+# Methods and Functions
+######################################################################
+
+begin	KEYWORD2
+readTempC	KEYWORD2
+readTempF	KEYWORD2
+sleep	KEYWORD2
+wakeup	KEYWORD2
+alert	KEYWORD2
+oneShot	KEYWORD2
+setLowTempC	KEYWORD2
+setHighTempC	KEYWORD2
+setLowTempF	KEYWORD2
+setHighTempF	KEYWORD2
+readLowTempC	KEYWORD2
+readHighTempC	KEYWORD2
+readLowTempF	KEYWORD2
+readHighTempF	KEYWORD2
+setConversionRate	KEYWORD2
+setExtendedMode	KEYWORD2
+setAlertPolarity	KEYWORD2
+setFault	KEYWORD2
+setAlertMode	KEYWORD2

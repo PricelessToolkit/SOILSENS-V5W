@@ -156,12 +156,12 @@ After entering the necessary information, click **Submit** to save the configura
 
 Accurate soil moisture readings require proper calibration. Follow these steps:
    - Put the sensor in dry soil.
-   - Press and hold the calibration button.
+   - Press and hold the calibration button. `Avoid moving the sensor to keep it tightly embedded in the soil.`
    - While holding the calibration button, briefly press the trigger button.
    - Continue holding the calibration button for less than 2 seconds and release it.
    - The blue LED will blink twice, indicating the start of `dry soil` calibration.
    - The device will complete the calibration, indicated by three blinks.
-   - Place the sensor in fully wet soil, you have 5 seconds to do so.
+   - Place the sensor in fully wet soil, you have 10 seconds to do so.
    - The blue LED will blink twice, indicating the start of `wet soil` calibration.
    - The device will complete the `wet soil` calibration, indicated by three blinks.
 
@@ -202,7 +202,7 @@ This project is open-source, enabling you to assemble SOILSENS-V5W yourself. To 
 ## Schematic
 <details>
   <summary>View schematic. Click here</summary>
-<img src="schematic.jpg"/>
+<img src="PCB/Soilsens-V5W_Schematic.jpg"/>
 </details>
 
 ## Programming using Arduino IDE
@@ -243,7 +243,9 @@ This project is open-source, enabling you to assemble SOILSENS-V5W yourself. To 
 
 
 ## 3D-Printed Case
-The ideal material for the case is transparent and UV-resistant. ASA "UV-resistant" or ABS in white is the best choice as it allows light to enter, enabling the luminance sensor to function properly. For indoor use, consider translucent PETG to increase the luminance sensor's range and opt for a 3D-printed case with vent holes to ensure proper function of the air humidity and temperature sensors. For outdoor use, a case without vent holes is recommended to prevent water ingress during heavy! rain. 
+The ideal material for the case is transparent and UV-resistant. ASA "UV-resistant" or ABS in white is the best choice as it allows light to enter, enabling the luminance sensor to function properly. For indoor use, consider translucent PETG to increase the luminance sensor's range and opt for a 3D-printed case with vent holes to ensure proper function of the air humidity and temperature sensors. For outdoor use, a case without vent holes is recommended to prevent water ingress during heavy! rain.
+Glue for case https://s.click.aliexpress.com/e/_DcvGBY9
+
 <img src="img/3dcolor.jpg"/>
 
 
@@ -257,4 +259,5 @@ Due to the capacitive sensing principle, readings can vary based on soil moistur
  - Holding the calibration button.
     -  More than 3 seconds configuration mode.
     -  Less than 2 seconds Calibration mode.
-- For connectivity issues in WiFi mode, verify the WiFi SSID, password, MAC, IP, Channel, and MQTT server details.
+- For connectivity issues in WiFi mode, verify the WiFi SSID, password, MAC, IP, Channel, and MQTT server details. Ensure the Wi-Fi signal strength at the installation point is strong and stable.
+- When manually pressing the trigger button, the sensor may occasionally stay on and not power off if the button is not released quickly enough. If this happens, simply press the reset button.

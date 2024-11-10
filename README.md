@@ -155,15 +155,21 @@ After entering the necessary information, click **Submit** to save the configura
 ## 2. Calibrating the Soil Moisture Sensor
 
 Accurate soil moisture readings require proper calibration. Follow these steps:
-   - Put the sensor in dry soil.
-   - Press and hold the calibration button. `Avoid moving the sensor to keep it tightly embedded in the soil.`
-   - While holding the calibration button, briefly press the trigger button.
-   - Continue holding the calibration button for less than 2 seconds and release it.
-   - The blue LED will blink twice, indicating the start of `dry soil` calibration.
-   - The device will complete the calibration, indicated by three blinks.
-   - Place the sensor in fully wet soil, you have 10 seconds to do so.
-   - The blue LED will blink twice, indicating the start of `wet soil` calibration.
-   - The device will complete the `wet soil` calibration, indicated by three blinks.
+
+1. Insert the sensor into the flowerpot, ensuring the soil is as dry as your plant can tolerate.
+2. Press and hold the calibration button. **Avoid moving the sensor to keep it securely embedded in the soil.**
+3. While holding the calibration button, briefly press the trigger button.
+4. Continue holding the calibration button for less than 2 seconds, then release it.
+5. The blue LED will blink twice, indicating the start of the "dry soil" calibration.
+6. The device will complete the minimum moisture level calibration, indicated by three blinks.
+7. You now have 60 seconds to water your plant to its maximum acceptable moisture level.
+   - I recommend watering the entire soil surface for no more than 20 seconds, allowing it to soak in for 40 seconds.
+8. After 60 seconds, the blue LED will blink twice, signaling the start of the "wet soil" (100%) calibration.
+9. The device will complete the "wet soil" calibration, indicated by three blinks.
+
+> [!NOTE]
+> To ensure accurate readings, avoid touching or moving the sensor after calibration to prevent loosening in the soil. If, over time, sediment accumulates in the soil, the Moisture MIN and MAX values may change.
+
 
 
 > [!IMPORTANT]

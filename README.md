@@ -186,12 +186,12 @@ Accurate soil moisture readings require proper calibration. Follow these steps:
 
 | RSSI (dBm)      | Signal Quality | Description                                |
 |-----------------|----------------|--------------------------------------------|
-| -30 to -50 dBm  | Excellent      | Very strong signal; ideal for stable data transmission |
+| -30 to -50 dBm  | Excellent      | Very strong signal, ideal for stable data transmission |
 | -51 to -60 dBm  | Good           | Strong signal, generally reliable for data |
-| -61 to -70 dBm  | Fair           | Moderate signal; some minor issues possible, but usable |
-| -71 to -80 dBm  | Poor           | Weak signal; may experience dropped WiFi sensor data |
-| -81 to -90 dBm  | Very Poor      | Very weak signal; frequent data drop likely |
-| Below -90 dBm   | Unusable       | No effective connection; likely out of range |
+| -61 to -70 dBm  | Fair           | Moderate signal, some minor issues possible, but usable |
+| -71 to -80 dBm  | Poor           | Weak signal, may experience some data drop |
+| -81 to -90 dBm  | Very Poor      | Very weak signal, frequent data drop likely |
+| Below -90 dBm   | Unusable       | No effective connection, likely out of range |
 
 
 ## 3. Wake Up Interval

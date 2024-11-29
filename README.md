@@ -122,6 +122,10 @@ To access the configuration settings, follow these steps:
    - Continue holding the calibration button for more than 3 seconds and release it.
    - The blue LED will blink **five times**, indicating the device has entered configuration mode.
 
+> [!NOTE]  
+> If you enter the wrong credentials or MAC address and the sensor stays on, preventing you from entering configuration mode again, follow these steps: disconnect the battery, press and hold the calibration button, reconnect the battery, wait for 5 seconds, then release the button. You should now be able to connect to the created hotspot and enter new credentials.
+
+
 2. **Access Configuration via WiFi:**
    - After entering configuration mode, the sensor creates a WiFi Access Point (AP) named `SOILSENS-V5W`.
    - Connect to this AP using the default password: `password`.

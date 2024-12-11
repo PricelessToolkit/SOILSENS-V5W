@@ -139,7 +139,7 @@ To access the configuration settings, follow these steps:
 
 
 3. **Web Configuration:**
-   - **Node Name:** Enter a unique name for your sensor.
+   - **Node Name:** Provide a unique name for your sensor. Make sure it does not include any spaces.
    - **Gateway Key:** Enter the key for the [Capibridge gateway.](https://github.com/PricelessToolkit/CapiBridge) for WIFI Mode not required
    - **Mode:** Select the desired mode:
      - **1 (ESP-NOW):** Selects ESP-NOW Protocol "Long-Range".

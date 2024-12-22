@@ -61,6 +61,7 @@ ____________
 ### Required
 
 - 1S 250mAh or less LiPo Battery (Connector PH2.0) 35x20x4mm MAX.
+   - https://s.click.aliexpress.com/e/_oBG0tjZ
    - https://s.click.aliexpress.com/e/_Dk14vS5
    - https://s.click.aliexpress.com/e/_DE5PfEV
    - Adafruit 150mAh https://www.adafruit.com/product/1317

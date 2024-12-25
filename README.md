@@ -65,7 +65,7 @@ ____________
    - https://s.click.aliexpress.com/e/_Dk14vS5
    - https://s.click.aliexpress.com/e/_DE5PfEV
    - Adafruit 150mAh https://www.adafruit.com/product/1317
-   - On my shop https://www.pricelesstoolkit.com/en/batteries/47-lipo-rechargeable-battery.html
+   - In my shop https://www.pricelesstoolkit.com/en/batteries/47-lipo-rechargeable-battery.html
 
 > [!WARNING] 
 > ⚠️ Ensure the battery connector has the correct polarity, as batteries from China sometimes come with random polarity. If it’s incorrect, you can manually swap the wires by gently lifting the plastic retainer on the pin, pulling the wire out, and then reversing the polarity before reinserting it.

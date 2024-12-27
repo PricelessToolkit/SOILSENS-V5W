@@ -149,9 +149,14 @@ To access the configuration settings, follow these steps:
    - For WiFi mode:
      - **WiFi SSID:** Enter your WiFi network name.
      - **Password:** Enter the WiFi password.
+     - **Channel:** Enter the WiFi Channel.
+        - You can set a fixed channel on your Wi-Fi router to prevent it from changing automatically
      - **MAC Address:** Specify the 2.4Ghz Access point MAC address "9b:84:5a.....".
      - **Local IP, Gateway, Subnet:** Enter IP address ⚠️ "IP Address outside of DHCP Range".
-     - **MQTT Server, Port, Username, Password:** Provide MQTT broker details.
+        - When your router's DHCP assigns IP addresses to connected devices, it usually assigns them within the range of 192.168.0.X up to 192.168.0.254. Think of the subnet as the last part of the IP address, which can range from 1 to 254. Normally, DHCP servers do not assign IPs starting from 1 or up to 254, so you usually have free IP addresses that won't be automatically assigned to any connected device. You need to choose an IP from this free range. You can check the DHCP range in your access point settings. 
+     - **MQTT Server IP, Port, Username, Password:** Provide MQTT broker details.
+       - Usually, the MQTT server IP is the same as the Home Assistant IP.
+       - Usually, the MQTT port is 1883.
 
 After entering the necessary information, click **Submit** to save the configuration. The sensor will restart with the new settings.
 

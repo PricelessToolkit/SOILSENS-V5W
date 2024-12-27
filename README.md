@@ -160,6 +160,9 @@ To access the configuration settings, follow these steps:
 
 After entering the necessary information, click **Submit** to save the configuration. The sensor will restart with the new settings.
 
+> [!NOTE]
+> If it does not restart, unplug and reconnect the battery. If the LED stays on after that, it means the sensor cannot connect because the SSID, Wi-Fi password, MAC address, Wi-Fi channel, or MQTT credentials are incorrect!
+
 
 > [!IMPORTANT]
 > ⚠️ Entering to configuration mode will erase all current settings. Therefore, if you enter configuration mode without saving any changes, all settings will revert to their factory defaults, such as `ESP-NOW` with Key `xy`.

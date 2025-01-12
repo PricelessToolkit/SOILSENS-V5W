@@ -61,11 +61,12 @@ ____________
 ### Required
 
 - 1S 250mAh or less LiPo Battery (Connector PH2.0) 35x20x4mm MAX.
+   - PricelessToolkit [1S 250mAh PH2.0](https://www.pricelesstoolkit.com/en/products/47-battery-li-po-37v-250mah-ph-20mm-2-pin.html)
    - https://s.click.aliexpress.com/e/_oBG0tjZ
    - https://s.click.aliexpress.com/e/_Dk14vS5
    - https://s.click.aliexpress.com/e/_DE5PfEV
    - Adafruit 150mAh https://www.adafruit.com/product/1317
-   - In my shop [1S 250mAh PH2.0 35x20x4mm](https://www.pricelesstoolkit.com/en/products/47-battery-li-po-37v-250mah-ph-20mm-2-pin.html)
+
 
 > [!WARNING] 
 > ⚠️ Ensure the battery connector has the correct polarity, as batteries from China sometimes come with random polarity. If it’s incorrect, you can manually swap the wires by gently lifting the plastic retainer on the pin, pulling the wire out, and then reversing the polarity before reinserting it.
@@ -77,7 +78,8 @@ ____________
 
 
 - 1S 4.20V LiPo charger.
-  - Adafruit https://www.adafruit.com/product/1304
+  - PricelessToolkit [Micro-Charger](https://www.pricelesstoolkit.com/en/products/47-battery-li-po-37v-250mah-ph-20mm-2-pin.html)
+  - Adafruit [Micro Lipo ](https://www.adafruit.com/product/1304)
 
 > [!WARNING]  
 > ⚠️ Ensure the charger’s maximum charging current does not exceed the battery’s capacity. For example, if the battery is 250mAh, the charger should have a maximum charging current of 250mA or less. Also, check the charger’s polarity, as it can sometimes be reversed.

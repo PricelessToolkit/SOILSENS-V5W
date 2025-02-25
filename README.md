@@ -149,7 +149,7 @@ To access the configuration settings, follow these steps:
      - **1 (ESP-NOW):** Selects ESP-NOW Protocol "Long-Range".
      - **0 (WiFi):** Selects standard WiFi and MQTT setup.
    - For WiFi mode:
-     - **WiFi SSID:** Enter your WiFi network name.
+     - **WiFi SSID:** Enter your WiFi network name. ⚠️ SSID of the WiFi can’t have letters like å,ä,ö, and so on…
      - **Password:** Enter the WiFi password.
      - **Channel:** Enter the WiFi Channel.
         - You can set a fixed channel on your Wi-Fi router to prevent it from changing automatically

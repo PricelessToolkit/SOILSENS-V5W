@@ -154,8 +154,9 @@ To access the configuration settings, follow these steps:
    - **Gateway Key:** Enter the key for the [Capibridge gateway.](https://github.com/PricelessToolkit/CapiBridge) for WIFI Mode not required
    - **Mode:** Select the desired mode:
      - **1 (ESP-NOW):** Selects ESP-NOW Protocol "Long-Range".
-     - **0 (WiFi):** Selects standard WiFi and MQTT setup.
-   - For WiFi mode:
+     - **0 (Fast-WiFi):** Selects Fast-WiFi and MQTT setup.
+     - **2 (Basic-WiFi):** Selects Basic-WiFi and MQTT setup "NEW Firmware SoilSens-V5W_3Mod".
+   - For Fast-WiFi mode:
      - **WiFi SSID:** Enter your WiFi network name. ⚠️ SSID of the WiFi can’t have letters like å,ä,ö, and so on…
      - **Password:** Enter the WiFi password.
      - **Channel:** Enter the WiFi Channel.

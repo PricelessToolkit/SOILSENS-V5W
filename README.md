@@ -61,9 +61,12 @@ ____________
 ### Required
 
 - 1S 250mAh or less LiPo Battery (Connector PH2.0) 35x20x4mm MAX.
+   - PricelessToolkit [1S 250mAh PH2.0](https://www.pricelesstoolkit.com/en/products/47-battery-li-po-37v-250mah-ph-20mm-2-pin.html)
+   - https://s.click.aliexpress.com/e/_oBG0tjZ
    - https://s.click.aliexpress.com/e/_Dk14vS5
    - https://s.click.aliexpress.com/e/_DE5PfEV
    - Adafruit 150mAh https://www.adafruit.com/product/1317
+
 
 > [!WARNING] 
 > ⚠️ Ensure the battery connector has the correct polarity, as batteries from China sometimes come with random polarity. If it’s incorrect, you can manually swap the wires by gently lifting the plastic retainer on the pin, pulling the wire out, and then reversing the polarity before reinserting it.
@@ -75,7 +78,8 @@ ____________
 
 
 - 1S 4.20V LiPo charger.
-  - Adafruit https://www.adafruit.com/product/1304
+  - PricelessToolkit [Micro-Charger](https://www.pricelesstoolkit.com/en/products/47-battery-li-po-37v-250mah-ph-20mm-2-pin.html)
+  - Adafruit [Micro Lipo ](https://www.adafruit.com/product/1304)
 
 > [!WARNING]  
 > ⚠️ Ensure the charger’s maximum charging current does not exceed the battery’s capacity. For example, if the battery is 250mAh, the charger should have a maximum charging current of 250mA or less. Also, check the charger’s polarity, as it can sometimes be reversed.
@@ -122,6 +126,10 @@ To access the configuration settings, follow these steps:
    - Continue holding the calibration button for more than 3 seconds and release it.
    - The blue LED will blink **five times**, indicating the device has entered configuration mode.
 
+> [!NOTE]  
+> If you enter the wrong credentials or MAC address and the sensor stays on, preventing you from entering configuration mode again, follow these steps: disconnect the battery, press and hold the calibration button, reconnect the battery, wait for 5 seconds, then release the button. You should now be able to connect to the created hotspot and enter new credentials.
+
+
 2. **Access Configuration via WiFi:**
    - After entering configuration mode, the sensor creates a WiFi Access Point (AP) named `SOILSENS-V5W`.
    - Connect to this AP using the default password: `password`.
@@ -135,19 +143,27 @@ To access the configuration settings, follow these steps:
 
 
 3. **Web Configuration:**
-   - **Node Name:** Enter a unique name for your sensor.
+   - **Node Name:** Provide a unique name for your sensor. ⚠️ Make sure it does not include any spaces.
    - **Gateway Key:** Enter the key for the [Capibridge gateway.](https://github.com/PricelessToolkit/CapiBridge) for WIFI Mode not required
    - **Mode:** Select the desired mode:
      - **1 (ESP-NOW):** Selects ESP-NOW Protocol "Long-Range".
      - **0 (WiFi):** Selects standard WiFi and MQTT setup.
    - For WiFi mode:
-     - **WiFi SSID:** Enter your WiFi network name.
+     - **WiFi SSID:** Enter your WiFi network name. ⚠️ SSID of the WiFi can’t have letters like å,ä,ö, and so on…
      - **Password:** Enter the WiFi password.
-     - **MAC Address:** Specify the Access point MAC address "9b:84:5a.....".
+     - **Channel:** Enter the WiFi Channel.
+        - You can set a fixed channel on your Wi-Fi router to prevent it from changing automatically
+     - **MAC Address:** Specify the 2.4Ghz Access point MAC address "9b:84:5a.....".
      - **Local IP, Gateway, Subnet:** Enter IP address ⚠️ "IP Address outside of DHCP Range".
-     - **MQTT Server, Port, Username, Password:** Provide MQTT broker details.
+        - When your router's DHCP assigns IP addresses to connected devices, it usually assigns them within the range of 192.168.0.X up to 192.168.0.254. Think of the subnet as the last part of the IP address, which can range from 1 to 254. Normally, DHCP servers do not assign IPs starting from 1 or up to 254, so you usually have free IP addresses that won't be automatically assigned to any connected device. You need to choose an IP from this free range. You can check the DHCP range in your access point settings. 
+     - **MQTT Server IP, Port, Username, Password:** Provide MQTT broker details.
+       - Usually, the MQTT server IP is the same as the Home Assistant IP.
+       - Usually, the MQTT port is 1883.
 
 After entering the necessary information, click **Submit** to save the configuration. The sensor will restart with the new settings.
+
+> [!NOTE]
+> If it does not restart, unplug and reconnect the battery. If the LED stays on after that, it means the sensor cannot connect because the SSID, Wi-Fi password, MAC address, Wi-Fi channel, or MQTT credentials are incorrect!
 
 
 > [!IMPORTANT]

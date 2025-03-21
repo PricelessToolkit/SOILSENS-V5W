@@ -94,7 +94,7 @@ ____________
 - Upon powering on, the SOILSENS-V5W operates in ESP-NOW mode by default. This mode does not require any initial configuration and communicates directly with the [Capibridge gateway](https://github.com/PricelessToolkit/CapiBridge). The default Gateway Key is "xy"
 
 
-| **Feature**                   | **ESP-NOW**                                                                 | **WiFi**                                      |
+| **Feature**                   | **ESP-NOW**                                                                 | **Fast-WiFi**                                      |
 |-------------------------------|-----------------------------------------------------------------------------|-----------------------------------------------|
 | **Energy Efficiency**         | Highly energy-efficient                                                     | ~3x Higher power consumption                   |
 | **Range**                     | Long-Range                                                                  | Short range                                   |
@@ -107,16 +107,19 @@ ____________
 > [!NOTE]
 > Measured using ``Power Profiler KIT 2`` Battery Capacity 250mAh, Power Cycle 1h
 
-| **Parameter**                       | **WIFI**               | **ESP-NOW**              |
-|-------------------------------------|----------------------------|---------------------------|
-| **Active Duration (seconds)**       | 1.5 seconds                | 0.55 seconds              |
-| **Current During Active Phase**     | 47 mA                      | 40 mA                     |
-| **Energy Consumption in Active Phase** | 0.02 mAh                  | 0.006112 mAh              |
-| **Inactive Duration**       | 0.99956 hours              | 0.999847 hours            |
-| **Energy Consumption in Inactive Phase** | 0.00007 mAh              | 0.00007 mAh               |
-| **Total Energy Consumption**  | 0.02007 mAh                | 0.006182 mAh              |
-| **Total Hours of Operation**        | 12,459 hours               | 40,445 hours              |
-| **Total Days of Operation**         | 519 days                   | 1,685 days                |
+| **Parameter**                              | **ESP-NOW**               | **Fast-WIFI**               | **Basic-WIFI**            |
+|--------------------------------------------|---------------------------|-----------------------------|---------------------------|
+| **Active Duration (seconds)**              | 0.55 seconds              | 1.5 seconds                 | 1.5 - 10 seconds          |
+| **Current During Active Phase**            | 40 mA                     | 47 mA                       | *                         |
+| **Energy Consumption in Active Phase**     | 0.006112 mAh              | 0.02 mAh                    | *                         |
+| **Inactive Duration**                      | 0.999847 hours            | 0.99956 hours               | *                         |
+| **Energy Consumption in Inactive Phase**   | 0.00007 mAh               | 0.00007 mAh                 | *                         |
+| **Total Energy Consumption**               | 0.006182 mAh              | 0.02007 mAh                 | *                         |
+| **Total Hours of Operation**               | 40,445 hours              | 12,459 hours                | *                         |
+| **Total Days of Operation**                | 1,685 days                | 519 days                    | *                         |
+
+(*) Depends on the network topology
+
 
 
 
@@ -140,7 +143,7 @@ To access the configuration settings, follow these steps:
    - Open a web browser and navigate to `http://192.168.4.1` to access the configuration page.
 
 
-| Mode ESP-NOW | Mode Wi-Fi |
+| Mode ESP-NOW | Mode Fast-WiFi |
 |--------------|------------|
 | Default Node name and key. | Only the key is not required. |
 | ![Image 1](img/hotspot1.jpg) | ![Image 2](img/hotspot2.jpg) |

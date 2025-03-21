@@ -167,6 +167,11 @@ To access the configuration settings, follow these steps:
      - **MQTT Server IP, Port, Username, Password:** Provide MQTT broker details.
        - Usually, the MQTT server IP is the same as the Home Assistant IP.
        - Usually, the MQTT port is 1883.
+   - For Basic-WiFi mode: "NEW Firmware SoilSens-V5W_3Mod"
+     - **WiFi SSID:** Enter your WiFi network name. ⚠️ SSID of the WiFi can’t have letters like å,ä,ö, and so on…
+     - **Password:** Enter the WiFi password.
+     - **MQTT Server IP, Port, Username, Password:** Provide MQTT broker details.
+
 
 After entering the necessary information, click **Submit** to save the configuration. The sensor will restart with the new settings.
 

@@ -19,6 +19,8 @@ AHT20 aht20;
 TMP102 sensor0;
 Preferences preferences;
 
+unsigned long failsafetimerstart;
+
 const int calibrationButtonPin = 7;
 const int blueLEDPin = 2;
 const int soilMoisturePin = 3;
@@ -286,8 +288,10 @@ void fast_setup_wifi() {
     Serial.println("\nWi-Fi connected (Fast-WIFI)");
     Serial.print("IP Address: ");
     Serial.println(WiFi.localIP());
+    failsafeTimer();
   } else {
     Serial.println("\nFailed to connect to Fast-WIFI");
+    failsafeTimer();
   }
 }
 
@@ -304,13 +308,16 @@ void basic_setup_wifi() {
     Serial.println("\nWi-Fi connected (Basic-WIFI)");
     Serial.print("IP Address: ");
     Serial.println(WiFi.localIP());
+    failsafeTimer();
   } else {
     Serial.println("\nFailed to connect to Basic-WIFI");
+    failsafeTimer();
   }
 }
 
 void reconnect() {
   while (!client.connected()) {
+    failsafeTimer();
     Serial.print("Attempting MQTT connection...");
     if (client.setBufferSize(1024)) {
       Serial.println("Buffer Size increased to 1024 byte");
@@ -319,10 +326,12 @@ void reconnect() {
     }
     String client_id = node_name;
     if (client.connect(client_id.c_str(), mqtt_username.c_str(), mqtt_password.c_str())) {
+      failsafeTimer();
       Serial.println("MQTT connected");
       Serial.println("Buffersize: " + client.getBufferSize());
       mqttautodiscovery();
     } else {
+      failsafeTimer();
       Serial.print("MQTT failed, rc=");
       Serial.print(client.state());
       Serial.println(" try again in 1 seconds");
@@ -350,6 +359,7 @@ int getAverageVoltage() {
 }
 
 void setup() {
+    failsafetimerstart = millis();
     Serial.begin(115200);
     Wire.begin(6, 5);
     // Retrieve the saved data from Preferences
@@ -497,7 +507,17 @@ void toggleDonePin() {
     }
 }
 
-////////////////////////// HOTSPOT END ///////////////////////////////////
+
+void failsafeTimer(){
+
+    unsigned long currentTime = millis();
+    if (currentTime - failsafetimerstart >= 15000UL) {
+    Serial.println("!!! FAILSAFE: 15 seconds elapsed in WiFi mode. Forcing toggleDonePin() !!!");
+    toggleDonePin(); // Trigger the external reset/power-off
+    }
+
+}
+
 
 void modeESPNOW() {
     doc.clear();
@@ -664,7 +684,10 @@ void publishmqtt() {
 unsigned long toggleStartTime = 0;
 bool mqttPublished = false;
 
+
+
 void loop() {
+
     if (config_mode == 1) {
         // ESP-NOW mode
         modeESPNOW();
@@ -690,4 +713,6 @@ void loop() {
         }
     }
     client.loop();
+    failsafeTimer();
+
 }

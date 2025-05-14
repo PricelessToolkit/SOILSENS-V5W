@@ -19,10 +19,12 @@ AHT20 aht20;
 TMP102 sensor0;
 Preferences preferences;
 
+bool inCalibrationMode = false;
 const int calibrationButtonPin = 7;
 const int blueLEDPin = 2;
 const int soilMoisturePin = 3;
 
+unsigned long BootTime;
 unsigned long buttonPressTime = 0;
 const unsigned long minPressTime = 500;
 const unsigned long maxPressTime = 2000;
@@ -326,6 +328,7 @@ void reconnect() {
       Serial.print("MQTT failed, rc=");
       Serial.print(client.state());
       Serial.println(" try again in 1 seconds");
+      FailSafe(); // Power off after 15S
       delay(1000);
     }
   }
@@ -352,6 +355,7 @@ int getAverageVoltage() {
 void setup() {
     Serial.begin(115200);
     Wire.begin(6, 5);
+    BootTime = millis();
     // Retrieve the saved data from Preferences
     preferences.begin("wifi-config", true);
     wifi_ssid = preferences.getString("ssid", "ssid");
@@ -456,6 +460,7 @@ void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
 }
 
 void calibrateSoilMoistureSensor() {
+    inCalibrationMode = true;  // Disable FailSafe during calibration
     preferences.begin("soilCalib", false);
     preferences.clear(); // Clear all previous values
     blinkLED(2, 500); // Blink LED 2 times for dry soil calibration
@@ -494,6 +499,17 @@ void toggleDonePin() {
         digitalWrite(4, HIGH);
         lastToggleTime = currentTime;
         isPinHigh = true;
+    }
+}
+
+
+
+void FailSafe() {
+    if (inCalibrationMode) return;  // Skip if calibrating
+    if (config_mode == 0 || config_mode == 2) {
+        if (millis() - BootTime >= 15000) {
+            toggleDonePin();
+        }
     }
 }
 
@@ -664,6 +680,9 @@ void publishmqtt() {
 unsigned long toggleStartTime = 0;
 bool mqttPublished = false;
 
+
+
+
 void loop() {
     if (config_mode == 1) {
         // ESP-NOW mode
@@ -689,5 +708,6 @@ void loop() {
             toggleDonePin();
         }
     }
+    FailSafe(); // Power off after 15S
     client.loop();
 }

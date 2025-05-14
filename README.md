@@ -95,13 +95,13 @@ ____________
 - Upon powering on, the SOILSENS-V5W operates in ESP-NOW mode by default. This mode does not require any initial configuration and communicates directly with the [Capibridge gateway](https://github.com/PricelessToolkit/CapiBridge). The default Gateway Key is "xy"
 
 
-| **Feature**                   | **ESP-NOW**                                                                 | **Fast-WiFi**                                      |
-|-------------------------------|-----------------------------------------------------------------------------|-----------------------------------------------|
-| **Energy Efficiency**         | Highly energy-efficient                                                     | ~3x Higher power consumption                   |
-| **Range**                     | Long-Range                                                                  | Short range                                   |
-| **Configuration**             | Does not require configuration                                              | Requires network and MQTT configuration       |
-| **Broadcasting**              | Sensor data can be read from a third device without connecting to a network | Requires connection to a network              |
-| **Gateway Requirement**       | Requires a gateway [Capibridge](https://github.com/PricelessToolkit/CapiBridge)                                             | Does not require a gateway                    |
+| **Feature**                   | **ESP-NOW**                                                                 | **Fast-WiFi**                                      |**Basic-WIFI**            |
+|-------------------------------|-----------------------------------------------------------------------------|-----------------------------------------------|-----------------------------------------------|
+| **Energy Efficiency**         | Highly energy-efficient                                                     | ~3x Higher power consumption                   | ~10+x Higher power consumption     |
+| **Range**                     | Long-Range                                                                  | Short range                                   | Short range                                   |
+| **Configuration**             | Does not require configuration                                              | Requires network and MQTT configuration       | Requires network and MQTT configuration     |
+| **Broadcasting**              | Sensor data can be read from a third device without connecting to a network | Requires connection to a network              | Requires connection to a network     |
+| **Gateway Requirement**       | Requires a gateway [Capibridge](https://github.com/PricelessToolkit/CapiBridge)                                             | Does not require a gateway       | Does not require a gateway             |
 
 
 ## Power consumption

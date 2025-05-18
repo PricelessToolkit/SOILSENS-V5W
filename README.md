@@ -144,10 +144,10 @@ To access the configuration settings, follow these steps:
    - Open a web browser and navigate to `http://192.168.4.1` to access the configuration page.
 
 
-| Mode ESP-NOW | Mode Fast-WiFi |
-|--------------|------------|
+| Mode ESP-NOW | Mode Basic-WiFi | Mode Fast-WiFi |
+|--------------|------------|------------|
 | Default Node name and key. | Only the key is not required. |
-| ![Image 1](img/hotspot1.jpg) | ![Image 2](img/hotspot2.jpg) |
+| ![Image 1](img/hotspot1.jpg) | ![Image 2](img/hotspot2.jpg) | ![Image 3](img/hotspot3.jpg) |
 
 
 3. **Web Configuration:**

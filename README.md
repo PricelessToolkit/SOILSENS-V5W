@@ -21,7 +21,7 @@ The SOILSENS-V5W is a reliable wireless capacitive soil moisture sensor that uti
 > [!NOTE]
 >  If you're ready to contribute to the project, your support would be greatly appreciated. Due to time constraints, I may not be able to quickly verify new "features" or completely new "code" functionality, so please create a new code/script in the new folder.
 
-- **14.05.2025** - Added FailSafe, if it can't connect to WIFI or MQTT, it will power off after 15s "Not tested yet".
+- **14.05.2025** - Added FailSafe, if it can't connect to WIFI or MQTT, it will power off after 15s.
 - **21.03.2025** - Added Basic WIFI mode.
 - -  **ESP-NOW Mode:**  Device-to-device communication or connection to an ESP-NOW gateway, enabling direct, low-latency, and energy-efficient data transmission.
 - - **Fast-WIFI Mode:**  A fast connect method with lower power consumption compared to Basic-WIFI mode. It includes advanced WiFi settings like static IP, MAC address, and channel selection, along with full MQTT integration.

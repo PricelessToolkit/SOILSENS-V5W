@@ -127,7 +127,7 @@ void setupSensorConfig() {
 </head>
 <body>
     <div class="container">
-        <h1>Fast-WIFI / Basic-WIFI Configuration</h1>
+        <h1>SoilSens-V5W Configuration</h1>
         <form action="/submit" method="post">
             <label for="nodeName">Node Name:</label><br>
             <input type="text" id="nodeName" name="nodeName"><br><br>

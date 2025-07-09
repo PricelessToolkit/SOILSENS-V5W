@@ -86,8 +86,16 @@ ____________
   - PricelessToolkit [Micro-Charger](https://www.pricelesstoolkit.com/en/products/47-battery-li-po-37v-250mah-ph-20mm-2-pin.html)
   - Adafruit [Micro Lipo ](https://www.adafruit.com/product/1304)
 
+
 > [!WARNING]  
 > ⚠️ Ensure the charger’s maximum charging current does not exceed the battery’s capacity. For example, if the battery is 250mAh, the charger should have a maximum charging current of 250mA or less. Also, check the charger’s polarity, as it can sometimes be reversed.
+
+
+###  In case of a Firmware update
+- Aliexpress
+  - [Pogo pin Clamp 6Pin 2.54mm spacing](https://s.click.aliexpress.com/e/_DEHExUb)
+- PricelessToolkit
+  - [Any 3.3v USB-UART Programmer](https://www.pricelesstoolkit.com/en/projects/33-uniprog-uartupdi-programmer-33v-0741049314412.html)
 
 
 # Initial Power On and Default Operation

@@ -1,5 +1,5 @@
 // ArduinoJson - https://arduinojson.org
-// Copyright © 2014-2024, Benoit BLANCHON
+// Copyright © 2014-2026, Benoit BLANCHON
 // MIT License
 
 #pragma once
@@ -19,10 +19,10 @@ class ArrayData : public CollectionData {
   }
 
   template <typename T>
-  bool addValue(T&& value, ResourceManager* resources);
+  bool addValue(const T& value, ResourceManager* resources);
 
   template <typename T>
-  static bool addValue(ArrayData* array, T&& value,
+  static bool addValue(ArrayData* array, const T& value,
                        ResourceManager* resources) {
     if (!array)
       return false;

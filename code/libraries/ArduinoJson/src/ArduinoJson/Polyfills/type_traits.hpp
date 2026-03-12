@@ -1,10 +1,11 @@
 // ArduinoJson - https://arduinojson.org
-// Copyright © 2014-2024, Benoit BLANCHON
+// Copyright © 2014-2026, Benoit BLANCHON
 // MIT License
 
 #pragma once
 
 #include "type_traits/conditional.hpp"
+#include "type_traits/decay.hpp"
 #include "type_traits/enable_if.hpp"
 #include "type_traits/function_traits.hpp"
 #include "type_traits/integral_constant.hpp"

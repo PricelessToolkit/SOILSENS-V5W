@@ -1,5 +1,5 @@
 // ArduinoJson - https://arduinojson.org
-// Copyright © 2014-2024, Benoit BLANCHON
+// Copyright © 2014-2026, Benoit BLANCHON
 // MIT License
 
 #pragma once
@@ -57,13 +57,13 @@ inline void ArrayData::removeElement(size_t index, ResourceManager* resources) {
 }
 
 template <typename T>
-inline bool ArrayData::addValue(T&& value, ResourceManager* resources) {
+inline bool ArrayData::addValue(const T& value, ResourceManager* resources) {
   ARDUINOJSON_ASSERT(resources != nullptr);
   auto slot = resources->allocVariant();
   if (!slot)
     return false;
   JsonVariant variant(slot.ptr(), resources);
-  if (!variant.set(detail::forward<T>(value))) {
+  if (!variant.set(value)) {
     resources->freeVariant(slot);
     return false;
   }

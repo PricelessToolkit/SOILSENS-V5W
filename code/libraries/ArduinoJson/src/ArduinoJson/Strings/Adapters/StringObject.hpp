@@ -1,5 +1,5 @@
 // ArduinoJson - https://arduinojson.org
-// Copyright © 2014-2024, Benoit BLANCHON
+// Copyright © 2014-2026, Benoit BLANCHON
 // MIT License
 
 #pragma once
@@ -15,7 +15,7 @@ struct StringAdapter<
     T,
     enable_if_t<(string_traits<T>::has_cstr || string_traits<T>::has_data) &&
                 (string_traits<T>::has_length || string_traits<T>::has_size)>> {
-  typedef SizedRamString AdaptedString;
+  using AdaptedString = RamString;
 
   static AdaptedString adapt(const T& s) {
     return AdaptedString(get_data(s), get_size(s));

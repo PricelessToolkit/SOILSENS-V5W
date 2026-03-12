@@ -1,5 +1,5 @@
 // ArduinoJson - https://arduinojson.org
-// Copyright © 2014-2024, Benoit BLANCHON
+// Copyright © 2014-2026, Benoit BLANCHON
 // MIT License
 
 #include <ArduinoJson.h>
@@ -44,6 +44,8 @@ TEST_CASE("JsonDocument constructor") {
       JsonDocument doc2(std::move(doc1));
 
       REQUIRE(doc2.as<std::string>() == "The size of this string is 32!!");
+
+      // NOLINTNEXTLINE(clang-analyzer-cplusplus.Move)
       REQUIRE(doc1.as<std::string>() == "null");
     }
     REQUIRE(spyingAllocator.log() == AllocatorLog{

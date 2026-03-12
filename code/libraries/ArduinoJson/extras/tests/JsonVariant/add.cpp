@@ -1,5 +1,5 @@
 // ArduinoJson - https://arduinojson.org
-// Copyright © 2014-2024, Benoit BLANCHON
+// Copyright © 2014-2026, Benoit BLANCHON
 // MIT License
 
 #include <ArduinoJson.h>
@@ -46,6 +46,18 @@ TEST_CASE("JsonVariant::add(T)") {
 
     REQUIRE(var.as<std::string>() == "{\"val\":123}");
   }
+
+#ifdef HAS_VARIABLE_LENGTH_ARRAY
+  SECTION("supports VLAs") {
+    size_t i = 16;
+    char vla[i];
+    strcpy(vla, "hello");
+
+    var.add(vla);
+
+    REQUIRE(var.as<std::string>() == "[\"hello\"]");
+  }
+#endif
 }
 
 TEST_CASE("JsonVariant::add<T>()") {

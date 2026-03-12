@@ -1,5 +1,5 @@
 // ArduinoJson - https://arduinojson.org
-// Copyright © 2014-2024, Benoit BLANCHON
+// Copyright © 2014-2026, Benoit BLANCHON
 // MIT License
 
 #pragma once
@@ -26,8 +26,13 @@ inline bool VariantData::setString(TAdaptedString value,
   if (value.isNull())
     return false;
 
-  if (value.isLinked()) {
+  if (value.isStatic()) {
     setLinkedString(value.data());
+    return true;
+  }
+
+  if (isTinyString(value, value.size())) {
+    setTinyString(value);
     return true;
   }
 

@@ -1,5 +1,5 @@
 // ArduinoJson - https://arduinojson.org
-// Copyright © 2014-2024, Benoit BLANCHON
+// Copyright © 2014-2026, Benoit BLANCHON
 // MIT License
 
 #define ARDUINOJSON_ENABLE_COMMENTS 1
@@ -692,6 +692,15 @@ TEST_CASE("Filtering") {
           DeserializationError::IncompleteInput,
           "null",
           0,
+      },
+      {
+          "NUL character in key",
+          "{\"x\":0,\"x\\u0000a\":1,\"x\\u0000b\":2}",
+          "{\"x\\u0000a\":true}",
+          10,
+          DeserializationError::Ok,
+          "{\"x\\u0000a\":1}",
+          sizeofObject(1) + sizeofString("x?a"),
       },
   };
 

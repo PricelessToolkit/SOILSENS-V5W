@@ -1,5 +1,5 @@
 // ArduinoJson - https://arduinojson.org
-// Copyright © 2014-2024, Benoit BLANCHON
+// Copyright © 2014-2026, Benoit BLANCHON
 // MIT License
 
 #pragma once
@@ -19,7 +19,7 @@ class JsonArrayConst : public detail::VariantOperators<JsonArrayConst> {
   friend class detail::VariantAttorney;
 
  public:
-  typedef JsonArrayConstIterator iterator;
+  using iterator = JsonArrayConstIterator;
 
   // Returns an iterator to the first element of the array.
   // https://arduinojson.org/v7/api/jsonarrayconst/begin/
@@ -45,9 +45,9 @@ class JsonArrayConst : public detail::VariantOperators<JsonArrayConst> {
 
   // Returns the element at the specified index.
   // https://arduinojson.org/v7/api/jsonarrayconst/subscript/
-  template <typename T>
-  detail::enable_if_t<detail::is_integral<T>::value, JsonVariantConst>
-  operator[](T index) const {
+  template <typename T,
+            detail::enable_if_t<detail::is_integral<T>::value, int> = 0>
+  JsonVariantConst operator[](T index) const {
     return JsonVariantConst(
         detail::ArrayData::getElement(data_, size_t(index), resources_),
         resources_);
@@ -55,9 +55,9 @@ class JsonArrayConst : public detail::VariantOperators<JsonArrayConst> {
 
   // Returns the element at the specified index.
   // https://arduinojson.org/v7/api/jsonarrayconst/subscript/
-  template <typename TVariant>
-  detail::enable_if_t<detail::IsVariant<TVariant>::value, JsonVariantConst>
-  operator[](const TVariant& variant) const {
+  template <typename TVariant,
+            detail::enable_if_t<detail::IsVariant<TVariant>::value, int> = 0>
+  JsonVariantConst operator[](const TVariant& variant) const {
     if (variant.template is<size_t>())
       return operator[](variant.template as<size_t>());
     else

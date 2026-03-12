@@ -1,5 +1,5 @@
 // ArduinoJson - https://arduinojson.org
-// Copyright © 2014-2024, Benoit BLANCHON
+// Copyright © 2014-2026, Benoit BLANCHON
 // MIT License
 
 #include <ArduinoJson.h>
@@ -158,7 +158,7 @@ TEST_CASE("JsonObject::operator[]") {
   }
 
   SECTION("should duplicate a non-static JsonString key") {
-    obj[JsonString("hello", JsonString::Copied)] = "world";
+    obj[JsonString("hello", false)] = "world";
     REQUIRE(spy.log() == AllocatorLog{
                              Allocate(sizeofPool()),
                              Allocate(sizeofString("hello")),
@@ -166,7 +166,7 @@ TEST_CASE("JsonObject::operator[]") {
   }
 
   SECTION("should not duplicate a static JsonString key") {
-    obj[JsonString("hello", JsonString::Linked)] = "world";
+    obj[JsonString("hello", true)] = "world";
     REQUIRE(spy.log() == AllocatorLog{
                              Allocate(sizeofPool()),
                          });
@@ -253,9 +253,15 @@ TEST_CASE("JsonObject::operator[]") {
 
   SECTION("JsonVariant") {
     obj["hello"] = "world";
-    doc["key"] = "hello";
+    obj["a\0b"_s] = "ABC";
 
-    REQUIRE(obj[obj["key"]] == "world");
-    REQUIRE(obj[obj["foo"]] == nullptr);
+    doc["key1"] = "hello";
+    doc["key2"] = "a\0b"_s;
+    doc["key3"] = "foo";
+
+    REQUIRE(obj[obj["key1"]] == "world");
+    REQUIRE(obj[obj["key2"]] == "ABC");
+    REQUIRE(obj[obj["key3"]] == nullptr);
+    REQUIRE(obj[obj["key4"]] == nullptr);
   }
 }

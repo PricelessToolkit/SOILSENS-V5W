@@ -20,6 +20,10 @@ The SOILSENS-V5W is a reliable wireless capacitive soil moisture sensor that uti
 
 > [!NOTE]
 >  If you're ready to contribute to the project, your support would be greatly appreciated. Due to time constraints, I may not be able to quickly verify new "features" or completely new "code" functionality, so please create a new code/script in the new folder.
+> 
+- **12.03.2026** - Bugfix / compatibility update.
+- - Fixed compilation for ESP32 Arduino Core v3.3.7 and AHT20 v1.0.2.
+- - Tested with ArduinoJson v7.4.3, PubSubClient v2.8, and SparkFun TMP102 Breakout v1.1.2.
 
 - **14.05.2025** - Added FailSafe, if it can't connect to WIFI or MQTT, it will power off after 15s.
 - **21.03.2025** - Added Basic WIFI mode.

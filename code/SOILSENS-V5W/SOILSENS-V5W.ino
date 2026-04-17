@@ -10,6 +10,7 @@
 #include <WebServer.h>
 #include <PubSubClient.h>
 #include <math.h>
+#include "espnow_encryption.h"
 
 #define DEFAULT_VREF 1100
 #define MQTT_RETAIN true
@@ -27,8 +28,6 @@ const int blueLEDPin = 2;
 const int soilMoisturePin = 3;
 
 unsigned long BootTime;
-unsigned long buttonPressTime = 0;
-const unsigned long minPressTime = 500;
 const unsigned long maxPressTime = 2000;
 
 unsigned int drySoilValue;
@@ -52,6 +51,8 @@ String mqtt_username;
 String mqtt_password;
 unsigned int wifi_channel;
 unsigned int config_mode; // 1: ESP-NOW, 0: Fast-WIFI, 2: Basic-WIFI
+bool espnow_encryption_enabled = false;
+String espnow_encryption_key;
 
 StaticJsonDocument<256> doc;
 
@@ -74,7 +75,6 @@ void basic_setup_wifi();
 void reconnect();
 int getAverageSoilMoisture();
 int getAverageVoltage();
-void calibrateSoilMoistureSensor();
 void blinkLED(int times, int interval);
 void toggleDonePin();
 void FailSafe();
@@ -83,6 +83,7 @@ void mqttautodiscovery();
 void publishmqtt();
 float readAHT20Temperature();
 float readAHT20Humidity();
+String htmlEscape(const String &value);
 
 #if defined(ESP_ARDUINO_VERSION_MAJOR) && ESP_ARDUINO_VERSION_MAJOR >= 3
 void OnDataSent(const wifi_tx_info_t *info, esp_now_send_status_t status) {
@@ -102,6 +103,15 @@ float readAHT20Humidity() {
   return aht20.getHumidity();
 }
 
+String htmlEscape(const String &value) {
+  String escaped = value;
+  escaped.replace("&", "&amp;");
+  escaped.replace("\"", "&quot;");
+  escaped.replace("<", "&lt;");
+  escaped.replace(">", "&gt;");
+  return escaped;
+}
+
 ////////////// HOTSPOT CONFIGURATION ////////////
 
 void setupSensorConfig() {
@@ -116,107 +126,374 @@ void setupSensorConfig() {
   Serial.println(WiFi.softAPIP());
 
   preferences.begin("wifi-config", false);
-  preferences.clear();
+  preferences.end();
+  preferences.begin("soilCalib", true);
+  drySoilValue = preferences.getUInt("drySoilValue", 0);
+  wetSoilValue = preferences.getUInt("wetSoilValue", 0);
+  preferences.end();
+  preferences.begin("wifi-config", false);
 
   WebServer server(80);
 
-  const char *htmlForm = R"rawliteral(
+  String htmlForm = R"rawliteral(
 <!DOCTYPE html>
-<html>
+<html lang="en" data-theme="dark">
 <head>
-    <title>SoilSensor Setup</title>
-    <style>
-        body { 
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            text-align: center;
-        }
-        .hidden {
-            display: none;
-        }
-    </style>
-    <script>
-        function toggleFields() {
-            var mode = document.querySelector('input[name="mode"]:checked').value;
-            if (mode === '1') {
-                document.getElementById('commonWifiFields').style.display = 'none';
-                document.getElementById('wifiAdvancedFields').style.display = 'none';
-                document.getElementById('mqttFields').style.display = 'none';
-            } else if (mode === '0') {
-                document.getElementById('commonWifiFields').style.display = 'block';
-                document.getElementById('wifiAdvancedFields').style.display = 'block';
-                document.getElementById('mqttFields').style.display = 'block';
-            } else if (mode === '2') {
-                document.getElementById('commonWifiFields').style.display = 'block';
-                document.getElementById('wifiAdvancedFields').style.display = 'none';
-                document.getElementById('mqttFields').style.display = 'block';
-            }
-        }
-        window.onload = function() {
-            toggleFields();
-        };
-    </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SoilSens-V5W Configuration</title>
+  <style>
+    :root{--bg-primary:#0a0e14;--bg-secondary:#111821;--bg-tertiary:#1a232f;--bg-card:#151d28;--bg-card-hover:#1a2636;--border-primary:#2a3744;--border-accent:#3d4f5f;--text-primary:#e6edf3;--text-secondary:#8b949e;--text-muted:#6e7681;--accent-primary:#49A6FD;--accent-secondary:#2c83d3;--accent-glow:rgba(73,166,253,0.16);--success:#3fb950;--warning:#d29922;--danger:#f85149;--shadow-md:0 24px 60px rgba(0,0,0,0.45)}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:
+      radial-gradient(circle at top left,rgba(73,166,253,0.16),transparent 28%),
+      radial-gradient(circle at top right,rgba(63,185,80,0.08),transparent 24%),
+      linear-gradient(180deg,#0a0e14 0%,#101722 100%);color:var(--text-primary);min-height:100vh;line-height:1.5}
+    .shell{max-width:1160px;margin:0 auto;padding:28px 18px 40px}
+    .hero{display:block;margin-bottom:18px}
+    .hero-card,.panel{background:rgba(17,24,33,0.92);border:1px solid var(--border-primary);border-radius:20px;box-shadow:var(--shadow-md);backdrop-filter:blur(6px)}
+    .hero-card{padding:24px}
+    .hero-title{margin:0;font-size:clamp(28px,4vw,44px);line-height:1.05}
+    .hero-subtitle{display:block;margin-top:6px;font-size:clamp(12px,2vw,16px);line-height:1.2;color:var(--text-secondary);font-weight:600;letter-spacing:.04em}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:var(--accent-glow);color:var(--accent-primary);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .mode-grid,.field-grid{display:grid;gap:16px}
+    .mode-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .field-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .section{background:var(--bg-card);border:1px solid var(--border-primary);border-radius:18px;padding:18px;margin-bottom:16px}
+    .section-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}
+    .section-title{font-size:16px;font-weight:700}
+    .section-copy{color:var(--text-secondary);font-size:13px;max-width:520px}
+    .mode-card{position:relative}
+    .mode-card input{position:absolute;opacity:0;pointer-events:none}
+    .mode-option{display:block;height:100%;padding:16px;border-radius:16px;background:var(--bg-tertiary);border:1px solid var(--border-primary);cursor:pointer;transition:transform .2s,border-color .2s,background .2s}
+    .mode-option strong{display:block;font-size:15px;margin-bottom:6px}
+    .mode-option span{display:block;color:var(--text-secondary);font-size:13px}
+    .mode-card input:checked + .mode-option{border-color:var(--accent-primary);background:var(--accent-glow);transform:translateY(-2px)}
+    .form-group{margin-bottom:14px}
+    .form-label{display:block;font-size:12px;font-weight:700;color:var(--text-secondary);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+    .form-input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--border-primary);background:var(--bg-tertiary);color:var(--text-primary);font-size:14px;transition:border-color .2s,box-shadow .2s}
+    .form-input:focus{outline:none;border-color:var(--accent-primary);box-shadow:0 0 0 4px rgba(73,166,253,0.12)}
+    .toggle-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;border-radius:14px;background:var(--bg-tertiary);border:1px solid var(--border-primary);margin-bottom:14px}
+    .toggle-copy strong{display:block;font-size:14px;margin-bottom:4px}
+    .toggle-copy span{display:block;color:var(--text-secondary);font-size:12px}
+    .toggle-input{width:22px;height:22px;accent-color:var(--accent-primary);flex-shrink:0}
+    .form-hint{font-size:12px;color:var(--text-muted);margin-top:6px}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(63,185,80,0.12);color:var(--success);font-size:12px;font-weight:700}
+    .pill::before{content:"";width:8px;height:8px;border-radius:999px;background:currentColor}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .settings-actions{flex-wrap:nowrap;margin-bottom:12px}
+    .calibration-actions{margin-bottom:16px;flex-wrap:nowrap}
+    .btn{appearance:none;border:none;border-radius:12px;padding:13px 18px;font-size:14px;font-weight:700;cursor:pointer;transition:transform .2s,opacity .2s}
+    .btn-primary{background:linear-gradient(135deg,var(--accent-primary),var(--accent-secondary));color:#fff}
+    .btn-secondary{background:var(--bg-tertiary);color:var(--text-primary);border:1px solid var(--border-primary)}
+    .btn-danger{background:linear-gradient(135deg,#f85149,#cf222e);color:#fff}
+    .btn-half{flex:1 1 50%;width:50%}
+    .btn-full{width:100%;justify-content:center}
+    .btn-calibration{flex:1 1 50%;width:50%;color:#fff}
+    .btn-dry{background:linear-gradient(135deg,#8a5a2b,#6f451f)}
+    .btn-wet{background:linear-gradient(135deg,var(--accent-primary),var(--accent-secondary))}
+    .status-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:16px}
+    .status-row.two-col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;align-items:stretch}
+    .status-chip{padding:14px;border-radius:14px;background:var(--bg-tertiary);border:1px solid var(--border-primary)}
+    .status-chip strong{display:block;font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+    .status-chip span{display:block;font-size:16px;font-weight:700;word-break:break-word}
+    .status-chip.live-chip{border-color:rgba(63,185,80,.35);background:rgba(63,185,80,.10)}
+    .status-chip.live-chip span{color:var(--success)}
+    .status-chip.dry-chip{border-color:rgba(138,90,43,.38);background:rgba(138,90,43,.16)}
+    .status-chip.dry-chip span{color:#c79057}
+    .status-chip.moist-chip{border-color:rgba(73,166,253,.35);background:rgba(73,166,253,.12)}
+    .status-chip.moist-chip span{color:var(--accent-primary)}
+    .btn:hover{transform:translateY(-1px)}
+    .footer-note{color:var(--text-muted);font-size:12px}
+    .conditional{display:none}
+    .conditional.show{display:block}
+    @media (max-width:900px){.mode-grid,.field-grid.two,.status-row{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>SoilSens-V5W Configuration</h1>
-        <form action="/submit" method="post">
-            <label for="nodeName">Node Name:</label><br>
-            <input type="text" id="nodeName" name="nodeName"><br><br>
-            <label for="gatewayKey">Gateway Key:</label><br>
-            <input type="text" id="gatewayKey" name="gatewayKey"><br><br>
-            <label for="mode">Mode:</label><br>
-            <input type="radio" id="mode1" name="mode" value="1" onclick="toggleFields()">
-            <label for="mode1">ESP-NOW</label><br>
-            <input type="radio" id="mode0" name="mode" value="0" onclick="toggleFields()" checked>
-            <label for="mode0">Fast-WIFI</label><br>
-            <input type="radio" id="mode2" name="mode" value="2" onclick="toggleFields()">
-            <label for="mode2">Basic-WIFI</label><br><br>
-            <div id="commonWifiFields">
-                <label for="ssid">WiFi SSID:</label><br>
-                <input type="text" id="ssid" name="ssid"><br><br>
-                <label for="password">WiFi Password:</label><br>
-                <input type="password" id="password" name="password"><br><br>
+  <div class="shell">
+    <section class="hero">
+      <div class="hero-card">
+        <h1 class="hero-title">SoilSense-V5W<span class="hero-subtitle">by PricelessToolkit</span></h1>
+      </div>
+    </section>
+
+    <form action="/submit" method="post">
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-title">Connection Mode</div>
+            <div class="section-copy">Choose the transport mode that matches your deployment.</div>
+          </div>
+        </div>
+        <div class="mode-grid">
+          <label class="mode-card">
+            <input type="radio" id="mode1" name="mode" value="1" __MODE_1__>
+            <span class="mode-option"><strong>ESP-NOW</strong><span>Direct peer-to-peer sending. No WiFi or MQTT fields required.</span></span>
+          </label>
+          <label class="mode-card">
+            <input type="radio" id="mode0" name="mode" value="0" __MODE_0__>
+            <span class="mode-option"><strong>Fast-WIFI</strong><span>Locks onto a known access point with fixed network details for faster reconnects.</span></span>
+          </label>
+          <label class="mode-card">
+            <input type="radio" id="mode2" name="mode" value="2" __MODE_2__>
+            <span class="mode-option"><strong>Basic-WIFI</strong><span>Standard WiFi client mode with DHCP-style simplicity.</span></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-title">Identity</div>
+            <div class="section-copy">Set the sensor name that will appear in Home Assistant under MQTT.</div>
+          </div>
+        </div>
+        <div class="field-grid two">
+          <div class="form-group">
+            <label class="form-label" for="nodeName">Node Name</label>
+            <input class="form-input" type="text" id="nodeName" name="nodeName" value="__NODE_NAME__">
+          </div>
+          <div class="form-group conditional" id="gatewayKeyField">
+            <label class="form-label" for="gatewayKey">Gateway Key</label>
+            <input class="form-input" type="text" id="gatewayKey" name="gatewayKey" value="__GATEWAY_KEY__">
+          </div>
+        </div>
+        <div class="conditional" id="espNowEncryptionBlock">
+          <div class="toggle-row">
+            <div class="toggle-copy">
+              <strong>Encryption</strong>
+              <span>Enable XOR encryption for ESP-NOW packets.</span>
             </div>
-            <div id="wifiAdvancedFields">
-                <label for="macAddress">MAC Address:</label><br>
-                <input type="text" id="macAddress" name="macAddress"><br><br>
-                <label for="wifiChannel">WiFi Channel:</label><br>
-                <input type="text" id="wifiChannel" name="wifiChannel"><br><br>
-                <label for="localIP">Local IP:</label><br>
-                <input type="text" id="localIP" name="localIP"><br><br>
-                <label for="gateway">Gateway:</label><br>
-                <input type="text" id="gateway" name="gateway"><br><br>
-                <label for="subnet">Subnet:</label><br>
-                <input type="text" id="subnet" name="subnet"><br><br>
+            <input class="toggle-input" type="checkbox" id="espnowEncryptionEnabled" name="espnowEncryptionEnabled" __ESPNOW_ENCRYPTION_ENABLED__>
+          </div>
+          <div class="field-grid two conditional" id="espNowEncryptionFields">
+            <div class="form-group">
+              <label class="form-label" for="espnowEncryptionKey">Encryption Key</label>
+              <input class="form-input" type="text" id="espnowEncryptionKey" name="espnowEncryptionKey" value="__ESPNOW_ENCRYPTION_KEY__">
+              <div class="form-hint">Use gateway format like ["0x4B","0xA3","0x3F","0x9C"]</div>
             </div>
-            <div id="mqttFields">
-                <label for="mqttserver">MQTT Server:</label><br>
-                <input type="text" id="mqttserver" name="mqttserver"><br><br>
-                <label for="mqttport">MQTT Port:</label><br>
-                <input type="text" id="mqttport" name="mqttport"><br><br>
-                <label for="mqttusername">MQTT Username:</label><br>
-                <input type="text" id="mqttusername" name="mqttusername"><br><br>
-                <label for="mqttpassword">MQTT Password:</label><br>
-                <input type="password" id="mqttpassword" name="mqttpassword"><br><br>
-            </div>
-            <input type="submit" value="Submit">
-        </form>
-        <br>
-        <p>Thank you for your Support!</p>
-    </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section conditional" id="commonWifiFields">
+        <div class="section-head">
+          <div>
+            <div class="section-title">WiFi Access</div>
+            <div class="section-copy">Credentials shared by Fast-WIFI and Basic-WIFI.</div>
+          </div>
+        </div>
+        <div class="field-grid two">
+          <div class="form-group">
+            <label class="form-label" for="ssid">WiFi SSID</label>
+            <input class="form-input" type="text" id="ssid" name="ssid" value="__SSID__">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="password">WiFi Password</label>
+            <input class="form-input" type="password" id="password" name="password" value="__PASSWORD__">
+          </div>
+        </div>
+      </section>
+
+      <section class="section conditional" id="wifiAdvancedFields">
+        <div class="section-head">
+          <div>
+            <div class="section-title">Fast-WIFI Network Details</div>
+            <div class="section-copy">These values are only used in Fast-WIFI mode.</div>
+          </div>
+        </div>
+        <div class="field-grid two">
+          <div class="form-group">
+            <label class="form-label" for="macAddress">AP MAC Address</label>
+            <input class="form-input" type="text" id="macAddress" name="macAddress" value="__MAC_ADDRESS__">
+            <div class="form-hint">Use the radio interface MAC address of your access point.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="wifiChannel">WiFi Channel</label>
+            <input class="form-input" type="text" id="wifiChannel" name="wifiChannel" value="__WIFI_CHANNEL__">
+            <div class="form-hint">The access point must use a fixed WiFi channel.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="localIP">Local IP</label>
+            <input class="form-input" type="text" id="localIP" name="localIP" value="__LOCAL_IP__">
+            <div class="form-hint">Use a free IP address from your local range and reserve it for this sensor.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="gateway">Gateway</label>
+            <input class="form-input" type="text" id="gateway" name="gateway" value="__GATEWAY__">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="subnet">Subnet</label>
+            <input class="form-input" type="text" id="subnet" name="subnet" value="__SUBNET__">
+          </div>
+        </div>
+      </section>
+
+      <section class="section conditional" id="mqttFields">
+        <div class="section-head">
+          <div>
+            <div class="section-title">MQTT Broker</div>
+            <div class="section-copy">These fields are only needed for WiFi-based modes.</div>
+          </div>
+        </div>
+        <div class="field-grid two">
+          <div class="form-group">
+            <label class="form-label" for="mqttserver">MQTT Server</label>
+            <input class="form-input" type="text" id="mqttserver" name="mqttserver" value="__MQTT_SERVER__">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="mqttport">MQTT Port</label>
+            <input class="form-input" type="text" id="mqttport" name="mqttport" value="__MQTT_PORT__">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="mqttusername">MQTT Username</label>
+            <input class="form-input" type="text" id="mqttusername" name="mqttusername" value="__MQTT_USERNAME__">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="mqttpassword">MQTT Password</label>
+            <input class="form-input" type="password" id="mqttpassword" name="mqttpassword" value="__MQTT_PASSWORD__">
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-title">Calibration</div>
+            <div class="section-copy">Capture the current raw soil moisture reading and save it as your dry or moist calibration point.</div>
+          </div>
+        </div>
+        <div class="status-row">
+          <div class="status-chip live-chip">
+            <strong>SOIL SENSOR RAW VALUE "LIVE"</strong>
+            <span id="calibrationRawValue">__CALIBRATION_RAW__</span>
+          </div>
+        </div>
+        <div class="status-row two-col">
+          <div class="status-chip dry-chip">
+            <strong>Dry Soil</strong>
+            <span id="dryCalibrationValue">__DRY_SOIL_VALUE__</span>
+          </div>
+          <div class="status-chip moist-chip">
+            <strong>WET SOIL</strong>
+            <span id="wetCalibrationValue">__WET_SOIL_VALUE__</span>
+          </div>
+        </div>
+        <div class="actions calibration-actions">
+          <button class="btn btn-secondary btn-calibration btn-dry" type="button" id="captureDrySoil">SET DRY SOIL</button>
+          <button class="btn btn-secondary btn-calibration btn-wet" type="button" id="captureWetSoil">SET WET SOIL</button>
+        </div>
+        <input type="hidden" id="drySoilCalibration" name="drySoilCalibration" value="__DRY_SOIL_VALUE_RAW__">
+        <input type="hidden" id="wetSoilCalibration" name="wetSoilCalibration" value="__WET_SOIL_VALUE_RAW__">
+        <div class="footer-note">Place the sensor in the target condition first, then capture the raw value and save configuration.</div>
+      </section>
+
+      <section class="section">
+        <div class="actions settings-actions">
+          <button class="btn btn-primary btn-half" type="submit">Save Configuration</button>
+          <button class="btn btn-secondary btn-half" type="button" onclick="window.location.reload()">Reload Values</button>
+        </div>
+        <button class="btn btn-danger btn-full" type="submit" formaction="/reset-defaults" formmethod="post">Reset to Default</button>
+        <div class="footer-note">Save stores the current settings. Reset to Default clears saved settings and loads the firmware defaults after restart.</div>
+      </section>
+    </form>
+  </div>
+
+  <script>
+    let calibrationPollHandle = null;
+
+    async function fetchCalibrationRawValue() {
+      const response = await fetch('/calibration-raw', { cache: 'no-store' });
+      if (!response.ok) throw new Error('Failed to read soil calibration value');
+      return response.json();
+    }
+
+    async function refreshCalibrationRawValue() {
+      try {
+        const payload = await fetchCalibrationRawValue();
+        document.getElementById('calibrationRawValue').textContent = String(payload.rawValue);
+      } catch (error) {
+      }
+    }
+
+    async function captureCalibration(target) {
+      try {
+        const payload = await fetchCalibrationRawValue();
+        const rawValue = String(payload.rawValue);
+        document.getElementById('calibrationRawValue').textContent = rawValue;
+        if (target === 'dry') {
+          document.getElementById('dryCalibrationValue').textContent = rawValue;
+          document.getElementById('drySoilCalibration').value = rawValue;
+        } else {
+          document.getElementById('wetCalibrationValue').textContent = rawValue;
+          document.getElementById('wetSoilCalibration').value = rawValue;
+        }
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+
+    function toggleFields() {
+      var selected = document.querySelector('input[name="mode"]:checked');
+      var mode = selected ? selected.value : '0';
+      var encryptionToggle = document.getElementById('espnowEncryptionEnabled');
+      var encryptionEnabled = encryptionToggle ? encryptionToggle.checked : false;
+      document.getElementById('gatewayKeyField').classList.toggle('show', mode === '1');
+      document.getElementById('espNowEncryptionBlock').classList.toggle('show', mode === '1');
+      document.getElementById('espNowEncryptionFields').classList.toggle('show', mode === '1' && encryptionEnabled);
+      document.getElementById('commonWifiFields').classList.toggle('show', mode !== '1');
+      document.getElementById('wifiAdvancedFields').classList.toggle('show', mode === '0');
+      document.getElementById('mqttFields').classList.toggle('show', mode !== '1');
+    }
+
+    document.querySelectorAll('input[name="mode"]').forEach(function(input) {
+      input.addEventListener('change', toggleFields);
+    });
+    document.getElementById('espnowEncryptionEnabled').addEventListener('change', toggleFields);
+    document.getElementById('captureDrySoil').addEventListener('click', function() { captureCalibration('dry'); });
+    document.getElementById('captureWetSoil').addEventListener('click', function() { captureCalibration('wet'); });
+    window.addEventListener('load', function() {
+      toggleFields();
+      refreshCalibrationRawValue();
+      calibrationPollHandle = window.setInterval(refreshCalibrationRawValue, 1000);
+    });
+  </script>
 </body>
 </html>
 )rawliteral";
 
+  htmlForm.replace("__NODE_NAME__", htmlEscape(node_name));
+  htmlForm.replace("__GATEWAY_KEY__", htmlEscape(gateway_key));
+  htmlForm.replace("__SSID__", htmlEscape(wifi_ssid));
+  htmlForm.replace("__PASSWORD__", htmlEscape(wifi_password));
+  htmlForm.replace("__MQTT_SERVER__", htmlEscape(mqtt_server));
+  htmlForm.replace("__MQTT_PORT__", String(mqtt_port));
+  htmlForm.replace("__MQTT_USERNAME__", htmlEscape(mqtt_username));
+  htmlForm.replace("__MQTT_PASSWORD__", htmlEscape(mqtt_password));
+  htmlForm.replace("__LOCAL_IP__", htmlEscape(wifi_local_ip));
+  htmlForm.replace("__GATEWAY__", htmlEscape(gateway));
+  htmlForm.replace("__SUBNET__", htmlEscape(subnet));
+  htmlForm.replace("__MAC_ADDRESS__", htmlEscape(mac_address));
+  htmlForm.replace("__WIFI_CHANNEL__", String(wifi_channel));
+  htmlForm.replace("__ESPNOW_ENCRYPTION_ENABLED__", espnow_encryption_enabled ? "checked" : "");
+  htmlForm.replace("__ESPNOW_ENCRYPTION_KEY__", htmlEscape(espnow_encryption_key));
+  htmlForm.replace("__CALIBRATION_RAW__", String(getAverageSoilMoisture()));
+  htmlForm.replace("__DRY_SOIL_VALUE__", drySoilValue ? String(drySoilValue) : String("Not set"));
+  htmlForm.replace("__WET_SOIL_VALUE__", wetSoilValue ? String(wetSoilValue) : String("Not set"));
+  htmlForm.replace("__DRY_SOIL_VALUE_RAW__", drySoilValue ? String(drySoilValue) : "");
+  htmlForm.replace("__WET_SOIL_VALUE_RAW__", wetSoilValue ? String(wetSoilValue) : "");
+  htmlForm.replace("__MODE_0__", config_mode == 0 ? "checked" : "");
+  htmlForm.replace("__MODE_1__", config_mode == 1 ? "checked" : "");
+  htmlForm.replace("__MODE_2__", config_mode == 2 ? "checked" : "");
+
   server.on("/", [&]() {
     server.send(200, "text/html", htmlForm);
+  });
+
+  server.on("/calibration-raw", HTTP_GET, [&]() {
+    String json = String("{\"rawValue\":") + String(getAverageSoilMoisture()) + "}";
+    server.send(200, "application/json", json);
   });
 
   server.on("/submit", HTTP_POST, [&]() {
@@ -235,6 +512,14 @@ void setupSensorConfig() {
       String subnetArg = server.arg("subnet");
       String macAddress = server.arg("macAddress");
       String wifiChannel = server.arg("wifiChannel");
+      bool espnowEncryptionEnabledArg = server.hasArg("espnowEncryptionEnabled");
+      String espnowEncryptionKeyArg = server.arg("espnowEncryptionKey");
+      String drySoilCalibrationArg = server.arg("drySoilCalibration");
+      String wetSoilCalibrationArg = server.arg("wetSoilCalibration");
+
+      if (espnowEncryptionKeyArg.length() == 0) {
+        espnowEncryptionKeyArg = defaultEspNowEncryptionKeyString();
+      }
 
       preferences.putString("ssid", ssid);
       preferences.putString("password", password);
@@ -250,27 +535,88 @@ void setupSensorConfig() {
       preferences.putString("subnet", subnetArg);
       preferences.putString("macAddress", macAddress);
       preferences.putUInt("wifiChannel", wifiChannel.toInt());
+      preferences.putBool("espEncOn", espnowEncryptionEnabledArg);
+      preferences.putString("espEncKey", espnowEncryptionKeyArg);
       preferences.end();
 
-      String html = "<html><body><h1>Configuration Saved</h1>";
-      html += "<table border='1' cellpadding='5' cellspacing='0'>";
-      html += "<tr><th>Field</th><th>Value</th></tr>";
-      html += "<tr><td>SSID</td><td>" + ssid + "</td></tr>";
-      html += "<tr><td>Password</td><td>" + password + "</td></tr>";
-      html += "<tr><td>Node Name</td><td>" + nodeName + "</td></tr>";
-      html += "<tr><td>Gateway Key</td><td>" + gatewayKey + "</td></tr>";
-      html += "<tr><td>Mode</td><td>" + mode + "</td></tr>";
-      html += "<tr><td>MQTT Server</td><td>" + mqttserver + "</td></tr>";
-      html += "<tr><td>MQTT Port</td><td>" + mqttport + "</td></tr>";
-      html += "<tr><td>MQTT Username</td><td>" + mqttusername + "</td></tr>";
-      html += "<tr><td>MQTT Password</td><td>" + mqttpassword + "</td></tr>";
-      html += "<tr><td>Local IP</td><td>" + localIP + "</td></tr>";
-      html += "<tr><td>Gateway</td><td>" + gatewayArg + "</td></tr>";
-      html += "<tr><td>Subnet</td><td>" + subnetArg + "</td></tr>";
-      html += "<tr><td>MAC Address</td><td>" + macAddress + "</td></tr>";
-      html += "<tr><td>WiFi Channel</td><td>" + wifiChannel + "</td></tr>";
-      html += "</table>";
-      html += "</body></html>";
+      preferences.begin("soilCalib", false);
+      if (drySoilCalibrationArg.length()) {
+        drySoilValue = drySoilCalibrationArg.toInt();
+        preferences.putUInt("drySoilValue", drySoilValue);
+      }
+      if (wetSoilCalibrationArg.length()) {
+        wetSoilValue = wetSoilCalibrationArg.toInt();
+        preferences.putUInt("wetSoilValue", wetSoilValue);
+      }
+      preferences.end();
+
+      String modeLabel = mode == "1" ? "ESP-NOW" : (mode == "0" ? "Fast-WIFI" : "Basic-WIFI");
+      String html = R"rawliteral(
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Configuration Saved</title>
+  <style>
+    body{margin:0;min-height:100vh;display:grid;place-items:center;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#0a0e14 0%,#101722 100%);color:#e6edf3;padding:20px}
+    .card{max-width:720px;width:100%;background:#151d28;border:1px solid #2a3744;border-radius:20px;padding:28px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+    h1{margin:0 0 10px;font-size:30px}
+    p{color:#8b949e}
+    table{width:100%;border-collapse:collapse;margin-top:18px}
+    th,td{padding:10px 12px;border-bottom:1px solid #2a3744;text-align:left;vertical-align:top;word-break:break-word}
+    th{color:#8b949e;font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+    .pill{display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(63,185,80,.14);color:#3fb950;font-weight:700;font-size:12px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <span class="pill">Saved successfully</span>
+    <h1>Configuration Saved</h1>
+    <p>Your settings were stored and the device will restart in a moment.</p>
+    <table>
+      <tr><th>Field</th><th>Value</th></tr>
+      <tr><td>Node Name</td><td>__NODE_NAME__</td></tr>
+      <tr><td>Gateway Key</td><td>__GATEWAY_KEY__</td></tr>
+      <tr><td>Mode</td><td>__MODE__</td></tr>
+      <tr><td>ESP-NOW Encryption</td><td>__ESPNOW_ENCRYPTION__</td></tr>
+      <tr><td>ESP-NOW Key</td><td>__ESPNOW_ENCRYPTION_KEY__</td></tr>
+      <tr><td>Dry Soil Calibration</td><td>__DRY_SOIL_VALUE__</td></tr>
+      <tr><td>Moist Soil Calibration</td><td>__WET_SOIL_VALUE__</td></tr>
+      <tr><td>WiFi SSID</td><td>__SSID__</td></tr>
+      <tr><td>WiFi Password</td><td>__PASSWORD__</td></tr>
+      <tr><td>MQTT Server</td><td>__MQTT_SERVER__</td></tr>
+      <tr><td>MQTT Port</td><td>__MQTT_PORT__</td></tr>
+      <tr><td>MQTT Username</td><td>__MQTT_USERNAME__</td></tr>
+      <tr><td>MQTT Password</td><td>__MQTT_PASSWORD__</td></tr>
+      <tr><td>Local IP</td><td>__LOCAL_IP__</td></tr>
+      <tr><td>Gateway</td><td>__GATEWAY__</td></tr>
+      <tr><td>Subnet</td><td>__SUBNET__</td></tr>
+      <tr><td>MAC Address</td><td>__MAC_ADDRESS__</td></tr>
+      <tr><td>WiFi Channel</td><td>__WIFI_CHANNEL__</td></tr>
+    </table>
+  </div>
+</body>
+</html>
+)rawliteral";
+      html.replace("__NODE_NAME__", htmlEscape(nodeName));
+      html.replace("__GATEWAY_KEY__", htmlEscape(gatewayKey));
+      html.replace("__MODE__", htmlEscape(modeLabel));
+      html.replace("__ESPNOW_ENCRYPTION__", htmlEscape(espnowEncryptionEnabledArg ? "On" : "Off"));
+      html.replace("__ESPNOW_ENCRYPTION_KEY__", htmlEscape(espnowEncryptionKeyArg));
+      html.replace("__DRY_SOIL_VALUE__", drySoilCalibrationArg.length() ? htmlEscape(drySoilCalibrationArg) : String("Unchanged"));
+      html.replace("__WET_SOIL_VALUE__", wetSoilCalibrationArg.length() ? htmlEscape(wetSoilCalibrationArg) : String("Unchanged"));
+      html.replace("__SSID__", htmlEscape(ssid));
+      html.replace("__PASSWORD__", htmlEscape(password));
+      html.replace("__MQTT_SERVER__", htmlEscape(mqttserver));
+      html.replace("__MQTT_PORT__", htmlEscape(mqttport));
+      html.replace("__MQTT_USERNAME__", htmlEscape(mqttusername));
+      html.replace("__MQTT_PASSWORD__", htmlEscape(mqttpassword));
+      html.replace("__LOCAL_IP__", htmlEscape(localIP));
+      html.replace("__GATEWAY__", htmlEscape(gatewayArg));
+      html.replace("__SUBNET__", htmlEscape(subnetArg));
+      html.replace("__MAC_ADDRESS__", htmlEscape(macAddress));
+      html.replace("__WIFI_CHANNEL__", htmlEscape(wifiChannel));
 
       server.send(200, "text/html", html);
       delay(500);
@@ -280,6 +626,45 @@ void setupSensorConfig() {
       delay(500);
       ESP.restart();
     }
+  });
+
+  server.on("/reset-defaults", HTTP_POST, [&]() {
+    preferences.begin("wifi-config", false);
+    preferences.clear();
+    preferences.end();
+
+    preferences.begin("soilCalib", false);
+    preferences.clear();
+    preferences.end();
+
+    String html = R"rawliteral(
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Defaults Restored</title>
+  <style>
+    body{margin:0;min-height:100vh;display:grid;place-items:center;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#0a0e14 0%,#101722 100%);color:#e6edf3;padding:20px}
+    .card{max-width:640px;width:100%;background:#151d28;border:1px solid #2a3744;border-radius:20px;padding:28px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+    h1{margin:0 0 10px;font-size:30px}
+    p{color:#8b949e;line-height:1.6}
+    .pill{display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(248,81,73,.14);color:#f85149;font-weight:700;font-size:12px;margin-bottom:12px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <span class="pill">Defaults restored</span>
+    <h1>Configuration Reset</h1>
+    <p>Saved settings were cleared. The sensor will restart and load the firmware default values.</p>
+  </div>
+</body>
+</html>
+)rawliteral";
+
+    server.send(200, "text/html", html);
+    delay(500);
+    ESP.restart();
   });
 
   server.begin();
@@ -417,6 +802,8 @@ void setup() {
   subnet = preferences.getString("subnet", "255.255.255.0");
   mac_address = preferences.getString("macAddress", "94:a6:7e:99:99:99");
   wifi_channel = preferences.getUInt("wifiChannel", 6);
+  espnow_encryption_enabled = preferences.getBool("espEncOn", false);
+  espnow_encryption_key = preferences.getString("espEncKey", defaultEspNowEncryptionKeyString());
   preferences.end();
 
   pinMode(calibrationButtonPin, INPUT);
@@ -432,7 +819,7 @@ void setup() {
   adc1_config_channel_atten(ADC1_CHANNEL_3, ADC_ATTEN_DB_11);
 
   if (digitalRead(calibrationButtonPin) == LOW) {
-    buttonPressTime = millis();
+    unsigned long buttonPressTime = millis();
     while (digitalRead(calibrationButtonPin) == LOW) {
       delay(1);
     }
@@ -440,9 +827,7 @@ void setup() {
     if (digitalRead(calibrationButtonPin) == HIGH) {
       unsigned long pressDuration = millis() - buttonPressTime;
 
-      if (pressDuration > minPressTime && pressDuration < maxPressTime) {
-        calibrateSoilMoistureSensor();
-      } else if (pressDuration >= maxPressTime) {
+      if (pressDuration >= maxPressTime) {
         blinkLED(6, 100);
         setupSensorConfig();
       }
@@ -509,31 +894,6 @@ void setup() {
   soilMpercent = constrain(mpercent, 0, 100);
 }
 
-void calibrateSoilMoistureSensor() {
-  inCalibrationMode = true;
-  preferences.begin("soilCalib", false);
-  preferences.clear();
-
-  blinkLED(2, 500);
-  delay(1000);
-
-  drySoilValue = getAverageSoilMoisture();
-  preferences.putUInt("drySoilValue", drySoilValue);
-
-  blinkLED(3, 500);
-  delay(60000);
-
-  blinkLED(2, 500);
-  delay(1000);
-
-  wetSoilValue = getAverageSoilMoisture();
-  preferences.putUInt("wetSoilValue", wetSoilValue);
-
-  blinkLED(3, 500);
-  preferences.end();
-  ESP.restart();
-}
-
 void blinkLED(int times, int interval) {
   for (int i = 0; i < times; i++) {
     digitalWrite(blueLEDPin, LOW);
@@ -586,7 +946,16 @@ void modeESPNOW() {
   doc["rw"] = int(getAverageSoilMoisture());
 
   size_t jsonSize = serializeJson(doc, myData.json, sizeof(myData.json));
-  esp_now_send(receiverAddress, (uint8_t *)&myData, jsonSize + 1);
+  if (espnow_encryption_enabled) {
+    uint8_t key[MAX_ESPNOW_ENCRYPTION_KEY_LENGTH];
+    size_t keyLength = 0;
+    if (parseEspNowEncryptionKey(espnow_encryption_key, key, keyLength)) {
+      xorInPlace(reinterpret_cast<uint8_t *>(myData.json), jsonSize, key, keyLength);
+    } else {
+      Serial.println("Invalid ESP-NOW encryption key configuration, sending plaintext payload");
+    }
+  }
+  esp_now_send(receiverAddress, reinterpret_cast<uint8_t *>(myData.json), jsonSize);
 }
 
 void mqttautodiscovery() {

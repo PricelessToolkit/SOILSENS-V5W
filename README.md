@@ -144,11 +144,8 @@ To access the configuration settings, follow these steps:
    - Disconnect Celular connection "4G/5G" and Connect to `SOILSENS-V5W` WIFI hotspot.
    - Open a web browser and go to `http://192.168.4.1`.
 
-> [!NOTE]  
-> If the sensor cannot connect because of incorrect credentials or network settings, disconnect the battery, hold the **CAL** button, reconnect the battery, wait a few seconds, and then release the button. The setup hotspot should start again so you can correct the settings.
 
-
-
+<img src="img/SoilSens_WebUI.jpg"/>
 
 
 3. **Configure the Sensor in the Web UI**

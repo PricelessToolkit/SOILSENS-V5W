@@ -1,10 +1,22 @@
-<img src="img/sens-cap.png"/>
+<div align="center">
+  <img alt="Shrike Lab logo"
+       src="img/sens-cap.png?raw=true"
+       >
+  
+  [Shop](https://www.pricelesstoolkit.com) | [YouTube](https://www.youtube.com/@PricelessToolkit)
+  
+</div>
+<p align="center">
+  <a href="https://ko-fi.com/U6U2QLAF8">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg"/>
+  </a>
+</p>
+
+🤗 Please consider subscribing to my YouTube channel. Your subscription goes a long way toward supporting my work. If you would like to contribute even more, you can also buy me a coffee.
 
 
-🤗 Please consider subscribing to my [YouTube channel](https://www.youtube.com/@PricelessToolkit/videos). Your subscription goes a long way toward supporting my work. If you would like to contribute even more, you can also buy me a coffee.
 
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/U6U2QLAF8)
 
 # Wireless "SOILSENS-V5W" and Wired ["SOILSENS-V5"](https://github.com/PricelessToolkit/SOILSENS-V5)
 

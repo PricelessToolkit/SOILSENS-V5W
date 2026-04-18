@@ -5,7 +5,7 @@
 
 🤗 Please consider subscribing to my YouTube channel. Your subscription goes a long way toward supporting my work. If you would like to contribute even more, you can also buy me a coffee.
   
-  [Shop](https://www.pricelesstoolkit.com) | [YouTube](https://www.youtube.com/@PricelessToolkit/videos)
+  [Shop](https://www.pricelesstoolkit.com) | [YouTube](https://www.youtube.com/watch?v=jbIuT4Cmzdk&t=36s)
   
 </div>
 <p align="center">

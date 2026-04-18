@@ -20,14 +20,6 @@ ____________
 
 
 
-
-
-
-
-
-
-
-
 # Wireless "SOILSENS-V5W" and Wired ["SOILSENS-V5"](https://github.com/PricelessToolkit/SOILSENS-V5)
 
 The SOILSENS-V5W is a wireless capacitive soil moisture sensor that supports both `ESP-NOW` and `Wi-Fi` connectivity. It also measures soil temperature, air temperature, air humidity, and ambient light. The capacitive sensing electrodes are embedded inside the PCB, which helps protect them from direct exposure. The sensor is compact, power-efficient, and designed for long-range communication in ESP-NOW mode. It can be configured without reflashing and supports MQTT auto-discovery through CapiBridge or direct Wi-Fi MQTT integration, making it fully compatible with Home Assistant.

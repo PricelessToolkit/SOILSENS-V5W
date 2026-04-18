@@ -1,9 +1,11 @@
 <div align="center">
-  <img alt="Shrike Lab logo"
+  <img alt="SoilSens-V5W"
        src="img/sens-cap.png?raw=true"
        >
+
+🤗 Please consider subscribing to my YouTube channel. Your subscription goes a long way toward supporting my work. If you would like to contribute even more, you can also buy me a coffee.
   
-  [Shop](https://www.pricelesstoolkit.com) | [YouTube](https://www.youtube.com/@PricelessToolkit)
+  [Shop](https://www.pricelesstoolkit.com) | [YouTube](https://www.youtube.com/@PricelessToolkit/videos)
   
 </div>
 <p align="center">
@@ -12,7 +14,15 @@
   </a>
 </p>
 
-🤗 Please consider subscribing to my YouTube channel. Your subscription goes a long way toward supporting my work. If you would like to contribute even more, you can also buy me a coffee.
+
+
+____________
+
+
+
+
+
+
 
 
 

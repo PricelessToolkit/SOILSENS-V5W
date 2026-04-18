@@ -1,6 +1,6 @@
 <div align="center">
   <img alt="SoilSens-V5W"
-       src="img/sens-cap.png?raw=true"
+       src="img/logo.png?raw=true"
        >
 
 🤗 Please consider subscribing to my YouTube channel. Your subscription goes a long way toward supporting my work. If you would like to contribute even more, you can also buy me a coffee.

@@ -203,9 +203,10 @@ Accurate soil moisture readings require proper calibration. Follow these steps:
 4. Check **SOIL SENSOR RAW VALUE "LIVE"** and wait until the reading is stable.
 5. For the dry calibration point:
    - Click **SET DRY SOIL**.
+   - Click **Save Configuration** to store the dry calibration value.
 6. For the wet calibration point:
-   - Water the soil to the maximum moisture level you want to allow.
-   - Wait for the raw reading to settle.
+   - Water the soil to the maximum moisture level you want to allow. **For best accuracy, let it soak for a couple of hours.**
+   - Reopen the web configuration page as described in the configuration section above.
    - Click **SET WET SOIL**.
 7. Click **Save Configuration** to store both calibration values.
 

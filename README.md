@@ -197,7 +197,7 @@ To access the configuration settings, follow these steps:
 
 Accurate soil moisture readings require proper calibration. Follow these steps:
 
-1. Insert the sensor into the dry soil.
+1. Insert the sensor into the dry soil  **For best practice, water it, wait a couple of days for the soil to settle around the sensor, and dry.**
 2. Open the web configuration page as described in the configuration section above.
 3. Go to the **Calibration** block.
 4. Check **SOIL SENSOR RAW VALUE "LIVE"** and wait until the reading is stable.
@@ -205,7 +205,7 @@ Accurate soil moisture readings require proper calibration. Follow these steps:
    - Click **SET DRY SOIL**.
    - Click **Save Configuration** to store the dry calibration value.
 6. For the wet calibration point:
-   - Water the soil to the maximum moisture level you want to allow. **For best accuracy, let it soak for 15 - 30 minutes.**
+   - Water the soil to the maximum moisture level you want to allow. **For best accuracy, let it soak for 5 - 10 minutes.**
    - Reopen the web configuration page as described in the configuration section above.
    - Click **SET WET SOIL**.
 7. Click **Save Configuration** to store both calibration values.

@@ -27,9 +27,7 @@ The SOILSENS-V5W is a wireless capacitive soil moisture sensor that supports bot
 <img src="img/ha_entity.png"/>
 
 
-## 🛒 Where to Buy
-
-https://www.PricelessToolkit.com
+## 🛒 Where to Buy https://www.PricelessToolkit.com
 
 
 ## 📣 Updates, Bugfixes, and Breaking Changes
